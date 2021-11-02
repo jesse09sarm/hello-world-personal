@@ -1,0 +1,5423 @@
+{
+  "$id": "https://referencetootherschemas.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VSCode Schema",
+  "type": "object",
+  "properties": {
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "anyOf": [
+          
+          {
+            "additionalProperties": false,
+            "properties": {
+              "APIGateway": {
+                "type": "object",
+                "description": "API instance creation in Anypoint Platform (by Instance ID); Policy creation/modification/deletion; Contract creation; Spring Cloud configuration API ID set/update; technology_stack=Mule",
+                "additionalProperties": false,
+                "properties": {
+              "APP_ENV": {
+                "type": "string",
+                "description": "spring cloud config suffix"
+              },
+              "GBL_GITHUB_CLONE_CRED_ID": {
+                "type": "string",
+                "description": "Jenkins credential id to clone repository"
+              },
+              "CMP_HIP": {
+                "type": "string",
+                "description": "hip"
+              },
+              "STP_API": {
+                "type": "string",
+                "description": "api asset name"
+              },
+              "GBL_ANYPOINT_ORG": {
+                "type": "string",
+                "description": "anypoint organization"
+              },
+              "CMP_ANYPOINT_ENV": {
+                "type": "string",
+                "description": "anypoint environment"
+              },
+              "STP_API_INSTANCE": {
+                "type": "string",
+                "description": "api instance label"
+              }
+},
+                "required": []
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "APIPackage": {
+                "type": "object",
+                "description": "Generate Maven POM; Generate exchange.json; Package; technology_stack=Mule",
+                "additionalProperties": false,
+                "properties": {
+              "GBL_ANYPOINT_ORG": {
+                "type": "string",
+                "description": "anypoint organization"
+              },
+              "APP_GROUP_ID": {
+                "type": "string",
+                "description": "Maven group id"
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": "version"
+              },
+              "CMP_API_FILE": {
+                "type": "string",
+                "description": "main api file"
+              },
+              "CMP_CLASSIFIER": {
+                "type": "string",
+                "description": "classifier oas, raml, wsdl"
+              },
+              "CMP_BASE_DIR": {
+                "type": "string",
+                "description": "base directory"
+              },
+              "STP_GLOB": {
+                "type": "string",
+                "description": "glob for files to be packaged"
+              }
+},
+                "required": ["CMP_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "APIPublish": {
+                "type": "object",
+                "description": "Publish API to Anypoint Exchange; technology_stack=Mule",
+                "additionalProperties": false,
+                "properties": {
+              "GBL_ANYPOINT_ORG": {
+                "type": "string",
+                "description": "anypoint organization"
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "STP_ASSET": {
+                "type": "string",
+                "description": "location of api asset"
+              },
+              "STP_SKIP_IF_PUBLISHED": {
+                "type": "string",
+                "description": "skip this step if published"
+              },
+              "CMP_CLASSIFIER": {
+                "type": "string",
+                "description": "api asset classifier - oas, raml, wsdl"
+              }
+},
+                "required": ["CMP_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "AWSECRImageUpload": {
+                "type": "object",
+                "description": "Upload the Image to AWS ECR; technology_stack=AWS",
+                "additionalProperties": false,
+                "properties": {
+              "STP_VAULT_ADDR": {
+                "type": "string",
+                "description": "vault address to retreieve the secrets"
+              },
+              "STP_VAULT_CRED_ID": {
+                "type": "string",
+                "description": "jenkins vault credid to access the secrets"
+              },
+              "STP_AWS_CRED_PATH": {
+                "type": "string",
+                "description": "secret mount point to vault to retrieve the key"
+              },
+              "STP_DOCKER_IMAGE_TAG": {
+                "type": "string",
+                "description": "image name that needs to be pulld from artifactory / local image available in jenkins"
+              },
+              "STP_ECR_IMAGE_NAME": {
+                "type": "string",
+                "description": "image name that needs to be pushed to AWS ECR"
+              },
+              "STP_ECR_REPO_NAME": {
+                "type": "string",
+                "description": "Name of the ECR Repo"
+              }
+},
+                "required": ["STP_AWS_CRED_PATH","STP_ECR_REPO_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "AWSTagECRImage": {
+                "type": "object",
+                "description": "Tag the ECR Image with new tag for promotion; technology_stack=AWS",
+                "additionalProperties": false,
+                "properties": {
+              "STP_VAULT_ADDR": {
+                "type": "string",
+                "description": "vault address to retreieve the secrets"
+              },
+              "STP_VAULT_CRED_ID": {
+                "type": "string",
+                "description": "jenkins vault credid to access the secrets"
+              },
+              "STP_AWS_CRED_PATH": {
+                "type": "string",
+                "description": "secret mount point to vault to retrieve the key"
+              },
+              "STP_TARGET_ECR_IMAGE_NAME": {
+                "type": "string",
+                "description": "image name used for retagging"
+              },
+              "STP_ECR_IMAGE_NAME": {
+                "type": "string",
+                "description": "image that need to be tagged"
+              },
+              "STP_ECR_REPO_NAME": {
+                "type": "string",
+                "description": "Name of the ECR Repo"
+              }
+},
+                "required": ["STP_AWS_CRED_PATH","STP_ECR_IMAGE_NAME","STP_ECR_REPO_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "Aggregator": {
+                "type": "object",
+                "description": "Aggregate multiple steps into one via YAML configuration. Mostly used for grouping multiple steps to perform a component deployment; technology_stack=Jenkins",
+                "additionalProperties": false,
+                "properties": {
+              "STP_DISPLAY_NAME": {
+                "type": "string",
+                "description": "Variable to hold stage display name."
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": "Variable to hold component build version. Mandatory if jenkins_pipeline_type is promotion"
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "CMP_TECHNOLOGY_ARTIFACTORY_REPO": {
+                "type": "string",
+                "description": "Artifactory Repo type used for fetch the artifact local repo to which an artifact should be published conditionally mandatory for pipelinetype ci|cicd|pullrequest|dml_cicd|",
+"oneOf": [
+
+              {
+                "const": "java"
+              },
+              {
+                "const": "uxui"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "python"
+              },
+              {
+                "const": "generic"
+              },
+              {
+                "const": "dotnet"
+              },
+              {
+                "const": "nuget"
+              }
+]
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              }
+},
+                "required": ["STP_DISPLAY_NAME","CMP_NAME","CMP_TECHNOLOGY_ARTIFACTORY_REPO","CMP_TYPE"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "AntBuild": {
+                "type": "object",
+                "description": "Jenkins Shared Library for Java builds using Apache Ant; technology_stack=Java",
+                "additionalProperties": false,
+                "properties": {
+              "STP_BUILD_DIR": {
+                "type": "string",
+                "description": "Path of the ant build scripts in the source repo"
+              },
+              "STP_BUILD_FILE_WIN": {
+                "type": "string",
+                "description": "Path of the windows build scripts file"
+              },
+              "STP_BUILD_FILE_LINUX": {
+                "type": "string",
+                "description": "Path of the windows build scripts file"
+              },
+              "STP_WAS_VERSION": {
+                "type": "string",
+                "description": "WAS version to be used for referring was related libraries on the build node"
+              }
+},
+                "required": ["STP_BUILD_DIR"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "ApiGovernance": {
+                "type": "object",
+                "description": "Jenkins Shared Library for API Governance Check in non prod pipelines, this library validates the collibra against the API Name and targeted deployment region; technology_stack=collibra",
+                "additionalProperties": false,
+                "properties": {
+              "STP_COLLIBRA_TYPE": {
+                "type": "string",
+                "description": "type in collibra generally it is api"
+              },
+              "STP_COLLIBRA_ASSET_NAME": {
+                "type": "string",
+                "description": "Asset/ API name in collibra"
+              },
+              "STP_COLLIBRA_GATE_ENABLED": {
+                "type": "boolean",
+                "description": "Gate is enforced if the value is true otherwise it just print the warning log and moves away"
+              },
+              "APP_COLLIBRA_DEV_INTG": {
+                "type": "string",
+                "description": ""
+              },
+              "APP_COLLIBRA_QA_UAT": {
+                "type": "string",
+                "description": ""
+              },
+              "APP_COLLIBRA_MODEL_PROD": {
+                "type": "string",
+                "description": ""
+              }
+},
+                "required": ["STP_COLLIBRA_TYPE","STP_COLLIBRA_ASSET_NAME","STP_COLLIBRA_GATE_ENABLED","APP_COLLIBRA_DEV_INTG","APP_COLLIBRA_QA_UAT","APP_COLLIBRA_MODEL_PROD"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "ArtifactoryDownload": {
+                "type": "object",
+                "description": "Jenkins Shared Library for downloading artifacts from Artifactory; technology_stack=artifactory",
+                "additionalProperties": false,
+                "properties": {
+              "STP_ARTIFACT_PATTERN": {
+                "type": "string",
+                "description": "Specifies the source path in Artifactory, from which the artifacts should be downloaded, in the following format: [repository name]/[repository path]. You can use wildcards to specify multiple artifacts. it should be a string with quote, please escape it"
+              },
+              "STP_ARTIFACT_TARGET": {
+                "type": "string",
+                "description": "To which jenkins directory artifacts should be downloaded to, it should be a string with quote, please escape it"
+              }
+},
+                "required": []
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "ArtifactoryPromotion": {
+                "type": "object",
+                "description": "Jenkins Shared Library for promoting artifacts to Artifactory, it finds the artifact's current repo and based on the application_environment it figures our what is the target repository and promotes it; technology_stack=Artifactory",
+                "additionalProperties": false,
+                "properties": {
+              "application_environment": {
+                "type": "string",
+                "description": "it is conditionally required if STP_TARGET_REPO is not provided , used to find the target repo to which artifact is promoted"
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": ""
+              },
+              "STP_TARGET_REPO": {
+                "type": "string",
+                "description": "Required only if the target repo in artifactory cannot be computed or exceptional cases"
+              }
+},
+                "required": ["application_environment","CMP_BUILD_VERSION"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "ArtifactoryUpload": {
+                "type": "object",
+                "description": "Jenkins Shared Library for uploading artifacts to Artifactory. By default this run inside the root directory of the source code , you can upload the files matching regex pattern or wildcard pattern or exact file name; technology_stack=Artifactory",
+                "additionalProperties": false,
+                "properties": {
+              "STP_BASE_APP_CODE_DIR": {
+                "type": "string",
+                "description": "Required if application source code has a multimodule build or the applicaiton src root context is within this folder"
+              },
+              "STP_ARTIFACT_PATH": {
+                "type": "string",
+                "description": "where to find the artifacts , the value should be relative to application source code folder i.e where the souce code is checked out  "
+              },
+              "STP_ARTIFACTORY_PUBLISH_REPO": {
+                "type": "string",
+                "description": "Artifactory publish repo - Optional, not needed if CMP_TECHNOLOGY_ARTIFACTORY_REPO or CMP_ARTIFACTORY_PUBLISH_REPO is included"
+              },
+              "STP_ARTIFACTORY_VIRTUAL_REPO": {
+                "type": "string",
+                "description": "Artifactory Virtual repo - Optional, not needed if CMP_TECHNOLOGY_ARTIFACTORY_REPO or CMP_ARTIFACTORY_VIRTUAL_REPO is included"
+              },
+              "STP_ARTIFACTORY_BASE_FOLDER": {
+                "type": "string",
+                "description": "Artifactory BASE Folder - Optional, not needed if APP_ARTIFACTORY_BASE_FOLDER is included in application.properties,takes precedence over APP_ARTIFACTORY_BASE_FOLDER"
+              },
+              "STP_ARTIFACTORY_TARGET_PATH": {
+                "type": "string",
+                "description": "Artifactory target path (excluding the base folder) to which artifacts needs to be uploaded"
+              },
+              "STP_REG_EXP": {
+                "type": "string",
+                "description": "when the CMP_ARTIFACT_NAME is in regex format (i.e.) when we need to upload the files matching a certain regex pattern",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              },
+              "CMP_BUILD_TOOL": {
+                "type": "string",
+                "description": "Component Technology Build Tool Name required for the components with aiggradle as it is used in build management",
+"oneOf": [
+
+              {
+                "const": "gradle"
+              },
+              {
+                "const": "aiggradle"
+              },
+              {
+                "const": "node"
+              },
+              {
+                "const": "axis"
+              },
+              {
+                "const": "maven"
+              },
+              {
+                "const": "ant"
+              },
+              {
+                "const": "blaze"
+              },
+              {
+                "const": "zip"
+              },
+              {
+                "const": "pega"
+              },
+              {
+                "const": "pipenv"
+              },
+              {
+                "const": "nuget"
+              },
+              {
+                "const": "axis-electron"
+              },
+              {
+                "const": "msbuild"
+              },
+              {
+                "const": "adb"
+              },
+              {
+                "const": "docker"
+              },
+              {
+                "const": "custom"
+              },
+              {
+                "const": "iics"
+              },
+              {
+                "const": "sfdx"
+              },
+              {
+                "const": "vb6"
+              },
+              {
+                "const": "npm"
+              },
+              {
+                "const": "dotnet_core"
+              }
+]
+              }
+},
+                "required": ["CMP_ARTIFACT_NAME","CMP_BUILD_TOOL"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "AutosysBuildAutomation": {
+                "type": "object",
+                "description": "Jenkins Shared Library for Autosys Build Automation; technology_stack=Autosys",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_TECHNOLOGY_NAME": {
+                "type": "string",
+                "description": "Component Technology Name",
+"oneOf": [
+
+              {
+                "const": "java"
+              },
+              {
+                "const": "angular"
+              },
+              {
+                "const": "react"
+              },
+              {
+                "const": "nodejs"
+              },
+              {
+                "const": "datastage"
+              },
+              {
+                "const": "autosys"
+              },
+              {
+                "const": "iics"
+              },
+              {
+                "const": "dotnet_core"
+              },
+              {
+                "const": "dotnet_framework"
+              },
+              {
+                "const": "pega"
+              },
+              {
+                "const": "camunda"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "python"
+              },
+              {
+                "const": "blaze"
+              },
+              {
+                "const": "postgres"
+              },
+              {
+                "const": "db2"
+              },
+              {
+                "const": "mssql"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "oracle"
+              },
+              {
+                "const": "sybase"
+              },
+              {
+                "const": "exadata"
+              },
+              {
+                "const": "logstash"
+              },
+              {
+                "const": "rabbitmq"
+              },
+              {
+                "const": "abinitio"
+              },
+              {
+                "const": "ssis"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "java_db"
+              },
+              {
+                "const": "snowflake"
+              },
+              {
+                "const": "mule"
+              },
+              {
+                "const": "adobe_aem"
+              },
+              {
+                "const": "adobe_livecycle"
+              },
+              {
+                "const": "salesforce"
+              }
+]
+              },
+              "CMP_TECHNOLOGY_ARTIFACTORY_REPO": {
+                "type": "string",
+                "description": "Artifactory Repo type used for fetch the artifact local repo to which an artifact should be published conditionally mandatory for pipelinetype ci|cicd|pullrequest|dml_cicd|",
+"oneOf": [
+
+              {
+                "const": "java"
+              },
+              {
+                "const": "uxui"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "python"
+              },
+              {
+                "const": "generic"
+              },
+              {
+                "const": "dotnet"
+              },
+              {
+                "const": "nuget"
+              }
+]
+              },
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              }
+},
+                "required": ["CMP_TECHNOLOGY_NAME","CMP_TECHNOLOGY_ARTIFACTORY_REPO","CMP_ARTIFACT_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "AutosysBuildDeployment": {
+                "type": "object",
+                "description": "Jenkins Shared Library for Autosys Build Deployment; technology_stack=Autosys",
+                "additionalProperties": false,
+                "properties": {
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACTORYDOWNLOAD": {
+                "type": "string",
+                "description": "Artifact Download flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_TECHNOLOGY_ARTIFACTORY_REPO": {
+                "type": "string",
+                "description": "Artifactory Repo type used for fetch the artifact local repo to which an artifact should be published conditionally mandatory for pipelinetype ci|cicd|pullrequest|dml_cicd|",
+"oneOf": [
+
+              {
+                "const": "java"
+              },
+              {
+                "const": "uxui"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "python"
+              },
+              {
+                "const": "generic"
+              },
+              {
+                "const": "dotnet"
+              },
+              {
+                "const": "nuget"
+              }
+]
+              },
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": "Component version to be deployed to higher environments"
+              },
+              "STP_AS_PROJECT_NAME": {
+                "type": "string",
+                "description": "Autosys project name corresponding to the application"
+              },
+              "STP_AS_SSH_CONN_STR": {
+                "type": "string",
+                "description": "SSH Connection string for connecting to Autosys server"
+              },
+              "STP_AS_USER": {
+                "type": "string",
+                "description": "User to be used for Autosys server"
+              },
+              "STP_ARTIFACT_PATTERN": {
+                "type": "string",
+                "description": "Artifact pattern that should be used for downloading the artifacts from JFROG Artifactory. Not mandatory, default vaule will be generated if value is not provided"
+              },
+              "STP_ARTIFACT_TARGET": {
+                "type": "string",
+                "description": "Location where the "
+              },
+              "STP_JIL_PARAMS_FILE_PATH": {
+                "type": "string",
+                "description": "Path of the autosys jil params file is located. Path should include the file name as well"
+              },
+              "STP_AS_PRIMARY_SERVER": {
+                "type": "string",
+                "description": "Autosys primary server"
+              },
+              "STP_AS_SECONDARY_SERVER": {
+                "type": "string",
+                "description": "Autosys secondary server"
+              },
+              "STP_AS_PRIMARY_SVRSCRIPT_PATH": {
+                "type": "string",
+                "description": "Path where the scripts needs to be copied on the primary autosys server"
+              },
+              "STP_AS_SECONDARY_SVRSCRIPT_PATH": {
+                "type": "string",
+                "description": "Path where the scripts needs to be copied on the primary autosys server"
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_TECHNOLOGY_ARTIFACTORY_REPO","CMP_ARTIFACT_NAME","CMP_BUILD_VERSION","STP_AS_PROJECT_NAME","STP_AS_SSH_CONN_STR","STP_AS_USER","STP_JIL_PARAMS_FILE_PATH","STP_AS_PRIMARY_SERVER","STP_AS_SECONDARY_SERVER","STP_AS_PRIMARY_SVRSCRIPT_PATH","STP_AS_SECONDARY_SVRSCRIPT_PATH"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "BlazeADBBuild": {
+                "type": "object",
+                "description": "Jenkins Shared Library for building Blaze ADB files; technology_stack=Blaze",
+                "additionalProperties": false,
+                "properties": {
+              "STP_DOWNLOAD_SCRIPT": {
+                "type": "string",
+                "description": "Path of the dependency download script in the source repo"
+              },
+              "STP_BUILD_SCRIPT": {
+                "type": "string",
+                "description": "Path of the ADB build script in the config repo"
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              }
+},
+                "required": ["CMP_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "BulkFileCopy": {
+                "type": "object",
+                "description": "Jenkins Shared Library to copy bulk content to a target server; technology_stack=Generic",
+                "additionalProperties": false,
+                "properties": {
+              "STP_DEPLOY_CONFIG_JSON_PATH": {
+                "type": "string",
+                "description": "Path of the deployment configuration JSON in the config repo"
+              }
+},
+                "required": ["STP_DEPLOY_CONFIG_JSON_PATH"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "DataStageBuildAutomation": {
+                "type": "object",
+                "description": "Jenkins Shared Library for Datastage Build; technology_stack=Datastage",
+                "additionalProperties": false,
+                "properties": {
+              "STP_PROJECTNAME_SHORT_DESC": {
+                "type": "string",
+                "description": "Short description to be used for adding in the artifacts being uploaded to JFROG"
+              },
+              "STP_ETL_DEVOPS_ENV_HOME_DR": {
+                "type": "string",
+                "description": "Directory in which the environment properties file is placed in the config repository"
+              },
+              "STP_ETL_DEVOPS_ENV_FILE_NAME": {
+                "type": "string",
+                "description": "Name of the file in which Environment properties file are updated in the config repository"
+              },
+              "STP_ETL_SOURCE_HOST": {
+                "type": "string",
+                "description": "ETL datastage host name"
+              },
+              "STP_ETL_PROJECT_NAME": {
+                "type": "string",
+                "description": "Name of the datastage project associated with the application component"
+              },
+              "STP_ETL_USERID": {
+                "type": "string",
+                "description": "User id to be used for performing ssh and scp operations on datastage host"
+              }
+},
+                "required": ["STP_PROJECTNAME_SHORT_DESC","STP_ETL_DEVOPS_ENV_HOME_DR","STP_ETL_DEVOPS_ENV_FILE_NAME","STP_ETL_SOURCE_HOST","STP_ETL_PROJECT_NAME","STP_ETL_USERID"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "DatastageDeployment": {
+                "type": "object",
+                "description": "Jenkins Shared Library for Datastage Deployment; technology_stack=Datastage",
+                "additionalProperties": false,
+                "properties": {
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACTORYDOWNLOAD": {
+                "type": "string",
+                "description": "Artifact Download flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_TECHNOLOGY_ARTIFACTORY_REPO": {
+                "type": "string",
+                "description": "Artifactory Repo type used for fetch the artifact local repo to which an artifact should be published conditionally mandatory for pipelinetype ci|cicd|pullrequest|dml_cicd|",
+"oneOf": [
+
+              {
+                "const": "java"
+              },
+              {
+                "const": "uxui"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "python"
+              },
+              {
+                "const": "generic"
+              },
+              {
+                "const": "dotnet"
+              },
+              {
+                "const": "nuget"
+              }
+]
+              },
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": "Component version to be deployed to higher environments"
+              },
+              "STP_ARTIFACT_PATTERN": {
+                "type": "string",
+                "description": "Artifact pattern that should be used for downloading the artifacts from JFROG Artifactory. Not mandatory, default vaule will be generated if value is not provided"
+              },
+              "STP_ARTIFACT_TARGET": {
+                "type": "string",
+                "description": "Location where the "
+              },
+              "STP_PROJECTNAME_SHORT_DESC": {
+                "type": "string",
+                "description": "Short description to be used for adding in the artifacts being uploaded to JFROG"
+              },
+              "STP_ETL_DEVOPS_ENV_HOME_DR": {
+                "type": "string",
+                "description": "Directory in which the environment properties file is placed in the config repository"
+              },
+              "STP_ETL_HOST_RSA_KEY_PATH": {
+                "type": "string",
+                "description": "Path on the host were jenkins private jeys are added"
+              },
+              "STP_ETL_SOURCE_HOST": {
+                "type": "string",
+                "description": "ETL datastage host name"
+              },
+              "STP_ETL_PROJECT_NAME": {
+                "type": "string",
+                "description": "Name of the datastage project associated with the application component"
+              },
+              "STP_ETL_HOST_USERID": {
+                "type": "string",
+                "description": "User id to be used for performing ssh and scp operations on datastage host"
+              },
+              "STP_DATASTAGE_PARAMS_FILE_NAME": {
+                "type": "string",
+                "description": "Path of the config repo where datastage params file is located. Path should include the file name as well"
+              },
+              "STP_DATASTAGE_DEPLOYMENT_FILE_LIST_FILE_NAME": {
+                "type": "string",
+                "description": "Path of the config repo where datastage params file is located. Path should include the file name as well"
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_TECHNOLOGY_ARTIFACTORY_REPO","CMP_ARTIFACT_NAME","CMP_BUILD_VERSION","STP_PROJECTNAME_SHORT_DESC","STP_ETL_DEVOPS_ENV_HOME_DR","STP_ETL_HOST_RSA_KEY_PATH","STP_ETL_SOURCE_HOST","STP_ETL_PROJECT_NAME","STP_ETL_HOST_USERID","STP_DATASTAGE_PARAMS_FILE_NAME","STP_DATASTAGE_DEPLOYMENT_FILE_LIST_FILE_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "DmlBuild": {
+                "type": "object",
+                "description": "Jenkins Shared Library for building DML packages both XLD and Liquibase pattern are supported , in case of XLD it creates the guardium wrapper for every packages for liquibase application should have the guardium wrapper properly filled; technology_stack=database ,dml",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_DML_CONFIG_PATH": {
+                "type": "string",
+                "description": "this value can be overriden by the STP_DML_CONFIG_PATH also Path of the json file which hold the list of databases and their XLD configuration values or path of YAML file which hold the list of databases and their Liquibase configuration properties. Value should be relative to the config repo"
+              },
+              "CMP_DEPLOY_TOOL": {
+                "type": "string",
+                "description": "if CMP_DEPLOY_TOOL is xld then packages are made to be incompatible with XLD and it is required for xld based implementation",
+"oneOf": [
+
+              {
+                "const": "xld"
+              },
+              {
+                "const": "liquibase"
+              }
+]
+              },
+              "STP_DATABASE_LIST": {
+                "type": "string",
+                "description": "comma seperated string which holds the list of databases that needs to be packaged , it is generally given as the input parameter to jenkins job to support dml packaging for multiple db components"
+              },
+              "STP_TARGET_DIR": {
+                "type": "string",
+                "description": "folder name under which all db script zip files should be created "
+              }
+},
+                "required": ["CMP_DML_CONFIG_PATH","CMP_DEPLOY_TOOL","STP_DATABASE_LIST","STP_TARGET_DIR"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "DmlLiquibaseDeploy": {
+                "type": "object",
+                "description": "Jenkins Shared Library for DML Deployment with Liquibase. This downloads the artifactory and with the list of database packages it deploys one after the another withe configuration available in DML_configuratin YAML file; technology_stack=database,dml",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": ""
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag if enabled to true ArtifactoryPromotion library is invoked, we need to give every required variable for the step ArtifactoryPromotion",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACTORYDOWNLOAD": {
+                "type": "string",
+                "description": "Artifact download flag if enabled to true ArtifactoryDownload library is invoked, we need to give every required variable for the step ArtifactoryDownload",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACT_PATH": {
+                "type": "string",
+                "description": "where the artifact is downloaded in jenkins workspace, this is given as input to artifactory download. "
+              },
+              "STP_LOG_LEVEL": {
+                "type": "string",
+                "description": "liquibase cli log level setting ",
+"oneOf": [
+
+              {
+                "const": "info"
+              },
+              {
+                "const": "debug"
+              }
+]
+              },
+              "CMP_DB_CONFIG_PATH": {
+                "type": "string",
+                "description": "this value can be overriden by the STP_DML_CONFIG_PATH also Path of the YAML file  which hold the list of databases and their Liquibase configuration properties. Value should be relative to the config repo"
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_BUILD_VERSION","STP_ARTIFACT_PATH","STP_LOG_LEVEL","CMP_DB_CONFIG_PATH"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "DockerArtifactoryUpload": {
+                "type": "object",
+                "description": "Jenkins Shared Library for uploading docker image to artifactory; technology_stack=docker",
+                "additionalProperties": false,
+                "properties": {
+              "STP_DOCKER_REGISTRY": {
+                "type": "string",
+                "description": "used to publish the artifactory to this registry"
+              },
+              "STP_DOCKER_BUILD_NAME": {
+                "type": "string",
+                "description": "publish the docker image in artifactory with this name"
+              },
+              "STP_DOCKER_IMAGE_TAG": {
+                "type": "string",
+                "description": "image name that needs to be pushed to artifactory"
+              },
+              "STP_DOCKER_TARGET_IMAGE_TAG": {
+                "type": "string",
+                "description": "used for building the image with particular tag"
+              },
+              "STP_ARTIFACTORY_DOCKER_REPO": {
+                "type": "string",
+                "description": "used for knowing which artifactory repo , and artifact need to be published"
+              }
+},
+                "required": []
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "DockerBuildAutomation": {
+                "type": "object",
+                "description": "Jenkins Shared Library for building Docker Image; technology_stack=Docker",
+                "additionalProperties": false,
+                "properties": {
+              "STP_DOCKER_BUILD_ARGS": {
+                "type": "object",
+                "description": "if any build args needs to be passed during runtime for dockerfile"
+              },
+              "STP_DOCKER_BUILD_OPTS": {
+                "type": "string",
+                "description": "if any docker build options that needs to be passed"
+              },
+              "STP_DOCKER_IMAGE_TAG": {
+                "type": "string",
+                "description": "used for building the image with particular tag"
+              },
+              "STP_DOCKER_FILE_DIR_PATH": {
+                "type": "string",
+                "description": "docker build directory, expected from config-repo"
+              }
+},
+                "required": []
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "DockerImageScan": {
+                "type": "object",
+                "description": "Jenkins Shared Library for Scaning the docker image using the Prisma Cloud Scan (paola Alto); technology_stack=docker",
+                "additionalProperties": false,
+                "properties": {
+              "STP_DOCKER_IMAGE_TAG": {
+                "type": "string",
+                "description": "used for building the image with particular tag"
+              }
+},
+                "required": ["STP_DOCKER_IMAGE_TAG"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "DotNetCoreUnitTestAndCodeAnalysis": {
+                "type": "object",
+                "description": "Jenkins Shared Library for DotNet Core Unit Test and Code Analysis; technology_stack=DotNet",
+                "additionalProperties": false,
+                "properties": {
+              "STP_SONAR_PROJECT_KEY": {
+                "type": "string",
+                "description": "Sonar project key"
+              },
+              "STP_SONAR_PROJECT_NAME": {
+                "type": "string",
+                "description": "Sonar project name"
+              },
+              "STP_SONAR_BUILD_BREAKER": {
+                "type": "string",
+                "description": "Sonar build breaker flag"
+              },
+              "STP_SONAR_EXCLUSIONS": {
+                "type": "string",
+                "description": "Pattern to indicate files to be excluded from SonarQube scan"
+              },
+              "STP_TEST_FILE_LOCATION": {
+                "type": "string",
+                "description": "Path of the test file in the source repo"
+              },
+              "STP_MS_BUILD_VERSION": {
+                "type": "string",
+                "description": "MSBuild version to be used for unit test execution"
+              },
+              "STP_UNIT_TESTS_FLAG": {
+                "type": "string",
+                "description": "Flag to indicate if Unit tests are to be executed or not"
+              },
+              "CMP_DOT_NET_HOME": {
+                "type": "string",
+                "description": ""
+              },
+              "CMP_BRANCH_NAME": {
+                "type": "string",
+                "description": "branch name of the source code repo to be checked out"
+              }
+},
+                "required": ["STP_SONAR_PROJECT_KEY","STP_SONAR_PROJECT_NAME","STP_SONAR_BUILD_BREAKER","STP_SONAR_EXCLUSIONS","CMP_DOT_NET_HOME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "DuckCreekPackaging": {
+                "type": "object",
+                "description": "Jenkins Shared Library for creating DuckCreek packages; technology_stack=DuckCreek",
+                "additionalProperties": false,
+                "properties": {
+              "STP_APP_SERVER_STAGING_LOCATION": {
+                "type": "string",
+                "description": "Staging location for artifacts on the Jenkins node"
+              },
+              "STP_BUILD_CONFIG_FILE": {
+                "type": "string",
+                "description": "Build configuration file on the config repo"
+              },
+              "STP_DEPLOYMENT_CONFIG_FILE": {
+                "type": "string",
+                "description": "Deployment configuration file on the config repo"
+              },
+              "STP_APP_DEPLOY_FLAG": {
+                "type": "string",
+                "description": "Flag to indicate if app deploy components and scripts are to be generated as part of packaging"
+              },
+              "STP_ASYNC_DEPLOY_FLAG": {
+                "type": "string",
+                "description": "Flag to indicate if async deploy components and scripts are to be generated as part of packaging"
+              },
+              "STP_WEB_DEPLOY_FLAG": {
+                "type": "string",
+                "description": "Flag to indicate if web deploy components and scripts are to be generated as part of packaging"
+              },
+              "STP_EXAMPLE_DB_DEPLOY_FLAG": {
+                "type": "string",
+                "description": "Flag to indicate if example DB components are to be generated as part of packaging"
+              },
+              "STP_REFERENCE_DB_DEPLOY_FLAG": {
+                "type": "string",
+                "description": "Flag to indicate if reference DB components are to be generated as part of packaging"
+              },
+              "STP_SHRED_DB_DEPLOY_FLAG": {
+                "type": "string",
+                "description": "Flag to indicate if shred DB components are to be generated as part of packaging"
+              },
+              "STP_VERACODE_SCAN_FLAG": {
+                "type": "string",
+                "description": "Flag to indicate if artifacts for Veracode scan are to be generated as part of packaging"
+              },
+              "STP_COPY_ADMIN_SCRIPTS": {
+                "type": "string",
+                "description": "Flag to indicate if admin are to be generated as part of packaging"
+              },
+              "STP_CREATE_INTERLINK_DB_SCRIPTS": {
+                "type": "string",
+                "description": "Flag to indicate if interlink DB scripts are to be generated as part of packaging"
+              },
+              "STP_CREATE_START_STOP_SCRIPTS": {
+                "type": "string",
+                "description": "Flag to indicate if server start and stop scripts are to be generated as part of packaging"
+              },
+              "STP_CREATE_REPORTS_ARTIFACTS": {
+                "type": "string",
+                "description": "Flag to indicate if reporting artifacts are to be generated as part of packaging"
+              },
+              "STP_CREATE_REPORTS_ARTIFACTS": {
+                "type": "string",
+                "description": "Flag to indicate if reporting artifacts are to be generated as part of packaging"
+              },
+              "STP_CREATE_MANUSCRIPT_VALIDATION_REPORTS": {
+                "type": "string",
+                "description": "Flag to indicate if manuscript validation is to be pperformed and artifacts are to be generated as part of packaging"
+              },
+              "STP_MANUSCRIPTS_REVIEW_TOOL_LIB": {
+                "type": "string",
+                "description": "Path of the manuscript validator in Artifactory"
+              },
+              "STP_USE_C_SCRIPT": {
+                "type": "string",
+                "description": "Flag to indicate if C script based bat file is to be genrated for app and web deployments."
+              },
+              "STP_REGIONS": {
+                "type": "string",
+                "description": "To indicate and specify region names for application. Leave blank if region specific files are not to be generated."
+              },
+              "STP_MSBUILD_TOOL": {
+                "type": "string",
+                "description": "Location of MSBuild tool installation on Jenkins node"
+              },
+              "CMP_DOT_NET_HOME": {
+                "type": "string",
+                "description": ""
+              },
+              "CMP_BRANCH_NAME": {
+                "type": "string",
+                "description": "branch name of the source code repo to be checked out"
+              }
+},
+                "required": ["STP_APP_SERVER_STAGING_LOCATION","STP_BUILD_CONFIG_FILE","STP_DEPLOYMENT_CONFIG_FILE","CMP_DOT_NET_HOME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "ExchangeUpload": {
+                "type": "object",
+                "description": "Upload Mule application / policy to Anypoint Exchange; technology_stack=Mule",
+                "additionalProperties": false,
+                "properties": {
+              "GBL_ANYPOINT_ORG": {
+                "type": "string",
+                "description": "anypoint organization"
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": "asset version"
+              }
+},
+                "required": ["CMP_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "FileCopyAndUnzip": {
+                "type": "object",
+                "description": "Jenkins Shared Library to copy a zip file to a target server and unzip; technology_stack=Generic",
+                "additionalProperties": false,
+                "properties": {
+              "STP_DEPLOY_CONFIG_JSON_PATH": {
+                "type": "string",
+                "description": "Path of the deployment configuration JSON in the config repo"
+              }
+},
+                "required": ["STP_DEPLOY_CONFIG_JSON_PATH"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "FileCopyBuild": {
+                "type": "object",
+                "description": "Jenkins Shared Library for builds using Liquibase; technology_stack=zip",
+                "additionalProperties": false,
+                "properties": {
+              "STP_CATALOG_FILE_NAME": {
+                "type": "string",
+                "description": "Catalog CSV file containing the list of files to be included in the generated archive file"
+              },
+              "STP_FILE_LIST_PATH": {
+                "type": "string",
+                "description": "Path for the catalog file in config repo"
+              },
+              "STP_FILE_VALIDATION": {
+                "type": "string",
+                "description": "Flag to indicate if the catalog CSV file contents require validation"
+              },
+              "CMP_DEPLOY_ENV": {
+                "type": "string",
+                "description": ""
+              }
+},
+                "required": ["STP_CATALOG_FILE_NAME","STP_FILE_LIST_PATH"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "GitCheckin": {
+                "type": "object",
+                "description": "Jenkins Shared Library to commit back to a repository checked out using GitCheckout; technology_stack=GitHub",
+                "additionalProperties": false,
+                "properties": {
+              "STP_COMMIT_MSG": {
+                "type": "string",
+                "description": "Commit message to be used during check-in"
+              }
+},
+                "required": []
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "GitCheckout": {
+                "type": "object",
+                "description": "Jenkins Shared Library for GIT checkout; technology_stack=GitHub",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_REPO_URL": {
+                "type": "string",
+                "description": "Source code repository url ssh format and conditionally mandatory for ci|cicd|dml_cicd"
+              },
+              "CMP_BRANCH_NAME": {
+                "type": "string",
+                "description": "branch name of the source code repo to be checked out"
+              }
+},
+                "required": ["CMP_REPO_URL"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "GitClone": {
+                "type": "object",
+                "description": "Jenkins Shared Library for GIT clone; technology_stack=GitHub",
+                "additionalProperties": false,
+                "properties": {
+              "STP_CLONE_REPO_URL": {
+                "type": "string",
+                "description": "URL of GitHub repository to clone"
+              },
+              "STP_CLONE_REPO_BRANCH_NAME": {
+                "type": "string",
+                "description": "Branch to clone"
+              }
+},
+                "required": ["STP_CLONE_REPO_URL"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "GitTag": {
+                "type": "object",
+                "description": "Jenkins Shared Library for GIT Tag; technology_stack=GitHub",
+                "additionalProperties": false,
+                "properties": {
+              "STP_GIT_TAG": {
+                "type": "string",
+                "description": "Value to be tagged"
+              },
+              "STP_GIT_BRANCH": {
+                "type": "string",
+                "description": "Branch against which the tag is to be updated"
+              },
+              "STP_COMMIT_MSG": {
+                "type": "string",
+                "description": "Commit message to be used during check-in"
+              }
+},
+                "required": []
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "GradleBuild": {
+                "type": "object",
+                "description": "Jenkins Shared Library for Java builds using Gradle; technology_stack=Java, DotNet",
+                "additionalProperties": false,
+                "properties": {
+              "STP_GRADLE_COMMAND": {
+                "type": "string",
+                "description": "Gradle command to be executed"
+              },
+              "STP_GRADLE_COMMAND": {
+                "type": "string",
+                "description": "Options to be passed to Gradle daemon"
+              },
+              "STP_BASE_APP_CODE_DIR": {
+                "type": "string",
+                "description": "Sub-directory under source repo where the build.gradle file and src directory can be found"
+              },
+              "CMP_JAVA_VERSION": {
+                "type": "string",
+                "description": "Java version to be used by Gradle. Will be loaded as a Jenkins tool."
+              }
+},
+                "required": []
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "GradleUnitTest": {
+                "type": "object",
+                "description": "Jenkins Shared Library for Java builds using Gradle; technology_stack=Java, DotNet",
+                "additionalProperties": false,
+                "properties": {
+              "STP_GRADLE_COMMAND": {
+                "type": "string",
+                "description": "Gradle command to be executed"
+              },
+              "STP_GRADLE_COMMAND": {
+                "type": "string",
+                "description": "Options to be passed to Gradle daemon"
+              },
+              "STP_BASE_APP_CODE_DIR": {
+                "type": "string",
+                "description": "Sub-directory under source repo where the build.gradle file and src directory can be found"
+              },
+              "CMP_JAVA_VERSION": {
+                "type": "string",
+                "description": "Java version to be used by Gradle. Will be loaded as a Jenkins tool."
+              }
+},
+                "required": ["STP_GRADLE_COMMAND"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "HIPValidation": {
+                "type": "object",
+                "description": "Invoke HIP Validation API; technology_stack=Mule",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_REPO_URL": {
+                "type": "string",
+                "description": "Source code repository url ssh format and conditionally mandatory for ci|cicd|dml_cicd"
+              },
+              "CMP_BRANCH_NAME": {
+                "type": "string",
+                "description": "branch name of the source code repo to be checked out"
+              },
+              "STP_APP_NAME": {
+                "type": "string",
+                "description": "app name"
+              },
+              "CMP_HIP": {
+                "type": "string",
+                "description": "hip"
+              },
+              "CMP_MULE_ENV": {
+                "type": "string",
+                "description": "mule environment"
+              }
+},
+                "required": ["CMP_REPO_URL"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "IICSBuild": {
+                "type": "object",
+                "description": "Jenkins Shared Library for builds using Liquibase; technology_stack=IICS",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_IICS_API_BASE_URL": {
+                "type": "string",
+                "description": "Base url of the Informatica IICS cloud platform",
+"oneOf": [
+
+              {
+                "const": "https://dm-us.informaticacloud.com/saas"
+              }
+]
+              },
+              "CMP_IICS_URL_API_END_POINT": {
+                "type": "string",
+                "description": "API End point to be used for performing IICS export and import functions",
+"oneOf": [
+
+              {
+                "const": "public/core/v3"
+              }
+]
+              },
+              "CMP_IICS_EXPORT_DEPENDENT_OBJECTS": {
+                "type": "string",
+                "description": "To indicate whether to export the dependent objects from IICS or not",
+"oneOf": [
+
+              {
+                "const": "false"
+              },
+              {
+                "const": "true"
+              }
+]
+              },
+              "STP_IICS_PROJECT_NAME": {
+                "type": "string",
+                "description": "IICS Project name"
+              },
+              "STP_IICS_EXPORT_INPUT_TYPE": {
+                "type": "string",
+                "description": "Format of the IICS Input - CATALOG file or Input params can be used",
+"oneOf": [
+
+              {
+                "const": "CATALOG"
+              },
+              {
+                "const": "PARAMS"
+              }
+]
+              },
+              "STP_DROP_NAME": {
+                "type": "string",
+                "description": "Name of the drop folder in the source repo in which the catalog file for the current build is placed - Provide the jenkins job parameter here"
+              },
+              "STP_IICS_JOBS_CATALOG_FILE_NAME": {
+                "type": "string",
+                "description": "Name of the file on the source repo where the job names that needs to be exported are mentioned - Mandatory if STP_IICS_EXPORT_INPUT_TYPE is CATALOG"
+              },
+              "STP_IICS_VAULT_KEY_PATH": {
+                "type": "string",
+                "description": "Vault key path where IICS connection related credentials are stored on hash corp vault"
+              },
+              "STP_IICS_VAULT_USER_KEY": {
+                "type": "string",
+                "description": "User ID Key to be used on retreive IICS User Name from vault"
+              },
+              "STP_IICS_VAULT_PASSWORD_KEY": {
+                "type": "string",
+                "description": "User ID Key to be used on retreive IICS password from vault"
+              },
+              "STP_IICS_VAULT_CRED_ID": {
+                "type": "string",
+                "description": "Jenkins Credentials ID to be used on retreive User Name and password from vault"
+              }
+},
+                "required": ["STP_IICS_PROJECT_NAME","STP_DROP_NAME","STP_IICS_JOBS_CATALOG_FILE_NAME","STP_IICS_VAULT_USER_KEY","STP_IICS_VAULT_PASSWORD_KEY","STP_IICS_VAULT_CRED_ID"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "IICSDeployment": {
+                "type": "object",
+                "description": "Jenkins Shared Library for builds using Liquibase; technology_stack=IICS",
+                "additionalProperties": false,
+                "properties": {
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACTORYDOWNLOAD": {
+                "type": "string",
+                "description": "Artifact Download flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_TECHNOLOGY_ARTIFACTORY_REPO": {
+                "type": "string",
+                "description": "Artifactory Repo type used for fetch the artifact local repo to which an artifact should be published conditionally mandatory for pipelinetype ci|cicd|pullrequest|dml_cicd|",
+"oneOf": [
+
+              {
+                "const": "java"
+              },
+              {
+                "const": "uxui"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "python"
+              },
+              {
+                "const": "generic"
+              },
+              {
+                "const": "dotnet"
+              },
+              {
+                "const": "nuget"
+              }
+]
+              },
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": "Component version to be deployed to higher environments"
+              },
+              "STP_ARTIFACT_PATTERN": {
+                "type": "string",
+                "description": "Artifact pattern that should be used for downloading the artifacts from JFROG Artifactory. Not mandatory, default vaule will be generated if value is not provided"
+              },
+              "CMP_IICS_API_BASE_URL": {
+                "type": "string",
+                "description": "Base url of the Informatica IICS cloud platform",
+"oneOf": [
+
+              {
+                "const": "https://dm-us.informaticacloud.com/saas"
+              }
+]
+              },
+              "CMP_IICS_URL_API_END_POINT": {
+                "type": "string",
+                "description": "API End point to be used for performing IICS export and import functions",
+"oneOf": [
+
+              {
+                "const": "public/core/v3"
+              }
+]
+              },
+              "CMP_IICS_EXPORT_DEPENDENT_OBJECTS": {
+                "type": "string",
+                "description": "To indicate whether to export the dependent objects from IICS or not",
+"oneOf": [
+
+              {
+                "const": "false"
+              },
+              {
+                "const": "true"
+              }
+]
+              },
+              "STP_IICS_SOURCE_PROJECT_ID": {
+                "type": "string",
+                "description": "Source IICS project ID from which the objects are exported from"
+              },
+              "STP_IICS_TARGET_PROJECT_ID": {
+                "type": "string",
+                "description": "Target IICS project ID to which the objects needs to be imported to"
+              },
+              "STP_IICS_TARGET_PROJECT_NAME": {
+                "type": "string",
+                "description": "Name of Target IICS project to which the objects needs to be imported to"
+              },
+              "STP_IICS_VAULT_KEY_PATH": {
+                "type": "string",
+                "description": "Vault key path where IICS connection related credentials are stored on hash corp vault"
+              },
+              "STP_IICS_VAULT_USER_KEY": {
+                "type": "string",
+                "description": "User ID Key to be used on retreive IICS User Name from vault"
+              },
+              "STP_IICS_VAULT_PASSWORD_KEY": {
+                "type": "string",
+                "description": "User ID Key to be used on retreive IICS password from vault"
+              },
+              "STP_IICS_VAULT_CRED_ID": {
+                "type": "string",
+                "description": "Jenkins Credentials ID to be used on retreive User Name and password from vault"
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_TECHNOLOGY_ARTIFACTORY_REPO","CMP_ARTIFACT_NAME","CMP_BUILD_VERSION","STP_IICS_VAULT_USER_KEY","STP_IICS_VAULT_PASSWORD_KEY","STP_IICS_VAULT_CRED_ID"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "IISDeployment": {
+                "type": "object",
+                "description": "Jenkins Shared Library for IIS deployment using XLDeploy; technology_stack=XLDeploy",
+                "additionalProperties": false,
+                "properties": {
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACTORYDOWNLOAD": {
+                "type": "string",
+                "description": "Artifact Download flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACT_PATTERN": {
+                "type": "string",
+                "description": "Artifact pattern that should be used for downloading the artifacts from JFROG Artifactory. Not mandatory, default vaule will be generated if value is not provided"
+              },
+              "STP_ARTIFACT_TARGET": {
+                "type": "string",
+                "description": "Location where the "
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_TECHNOLOGY_ARTIFACTORY_REPO": {
+                "type": "string",
+                "description": "Artifactory Repo type used for fetch the artifact local repo to which an artifact should be published conditionally mandatory for pipelinetype ci|cicd|pullrequest|dml_cicd|",
+"oneOf": [
+
+              {
+                "const": "java"
+              },
+              {
+                "const": "uxui"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "python"
+              },
+              {
+                "const": "generic"
+              },
+              {
+                "const": "dotnet"
+              },
+              {
+                "const": "nuget"
+              }
+]
+              },
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": "Component version to be deployed to higher environments"
+              },
+              "STP_NON_PROPERTY_COMPONENT_NAME": {
+                "type": "string",
+                "description": "Component name to be part of the package version"
+              },
+              "STP_PUBLISH_OR_DEPLOY": {
+                "type": "string",
+                "description": "Mention the operation to be performed or not, PUBLISH or DEPLOY. Use deploy for publish",
+"oneOf": [
+
+              {
+                "const": "publish"
+              },
+              {
+                "const": "deploy"
+              }
+]
+              },
+              "STP_SERVICES_XLD_ABSOLUTE_APP_PATH": {
+                "type": "string",
+                "description": "Application record path related to the application in XL Deploy"
+              },
+              "STP_SERVICES_XLD_ABSOLUTE_ENV_NAME": {
+                "type": "string",
+                "description": "Environment record path related to the application environment in XL Deploy"
+              },
+              "STP_XLD_APP_FOLDER_NAME": {
+                "type": "string",
+                "description": "Application folder name in XL Deploy"
+              },
+              "STP_EXCLUDE_FILE_REGEX": {
+                "type": "string",
+                "description": "Regex pattern for the files to be excluded during the deployments"
+              },
+              "STP_DEPLOY_MANIFEST_PATH": {
+                "type": "string",
+                "description": "Manifest file path to be used for deployments."
+              },
+              "STP_APPLICATIONPOOLSPEC": {
+                "type": "string",
+                "description": "Application pool spec",
+"oneOf": [
+
+              {
+                "const": "true"
+              }
+]
+              },
+              "STP_APPLICATIONSPEC": {
+                "type": "string",
+                "description": "Application spec",
+"oneOf": [
+
+              {
+                "const": "true"
+              }
+]
+              },
+              "STP_ONDEMANDSCRIPT": {
+                "type": "string",
+                "description": "On demand script",
+"oneOf": [
+
+              {
+                "const": "true"
+              }
+]
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_TECHNOLOGY_ARTIFACTORY_REPO","CMP_ARTIFACT_NAME","CMP_BUILD_VERSION","STP_SERVICES_XLD_ABSOLUTE_APP_PATH","STP_SERVICES_XLD_ABSOLUTE_ENV_NAME","STP_XLD_APP_FOLDER_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "IISReset": {
+                "type": "object",
+                "description": "Jenkins Shared Library for IIS Server actions like IIS Stop or Start or Restart. Restart includes both Stop and Start.; technology_stack=IIS",
+                "additionalProperties": false,
+                "properties": {
+              "STP_IIS_SERVER": {
+                "type": "string",
+                "description": "IIS Server host name"
+              },
+              "STP_IIS_RESET_ACTION": {
+                "type": "string",
+                "description": "IIS server Action to be performed in the step",
+"oneOf": [
+
+              {
+                "const": "/STOP"
+              },
+              {
+                "const": "/START"
+              }
+]
+              },
+              "STP_CREDENTIAL_TYPE": {
+                "type": "string",
+                "description": "Credential type that needs to be used for fetching the credentials",
+"oneOf": [
+
+              {
+                "const": "jenkins"
+              }
+]
+              },
+              "STP_IIS_RESET_ACTIVE": {
+                "type": "string",
+                "description": "IIS reset type",
+"oneOf": [
+
+              {
+                "const": "true"
+              }
+]
+              }
+},
+                "required": ["STP_IIS_SERVER","STP_IIS_RESET_ACTION"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "LiquibaseDeployment": {
+                "type": "object",
+                "description": "Jenkins Shared Library for builds using Liquibase. It packages entire root folder of the source repo into single package; technology_stack=Liquibase",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              }
+},
+                "required": ["CMP_ARTIFACT_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "LiquibaseDeployment": {
+                "type": "object",
+                "description": "Jenkins Shared Library for builds using Python; technology_stack=liquibase",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": ""
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              },
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag if enabled to true ArtifactoryPromotion library is invoked, we need to give every required variable for the step ArtifactoryPromotion",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACTORYDOWNLOAD": {
+                "type": "string",
+                "description": "Artifact download flag if enabled to true ArtifactoryDownload library is invoked, we need to give every required variable for the step ArtifactoryDownload",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACT_PATH": {
+                "type": "string",
+                "description": "where the artifact is downloaded in jenkins workspace, this is given as input to artifactory download. "
+              },
+              "STP_LOG_LEVEL": {
+                "type": "string",
+                "description": "liquibase cli log level setting ",
+"oneOf": [
+
+              {
+                "const": "info"
+              },
+              {
+                "const": "debug"
+              }
+]
+              },
+              "STP_DB_TYPE": {
+                "type": "string",
+                "description": "used to load the driver and classpath for each db type acceptable values are db2,db2z,oracle,postgresql,sybase,mssql,snowflake"
+              },
+              "STP_DATABASE_CHANGE_LOG_FILE": {
+                "type": "string",
+                "description": "master changes log file name"
+              },
+              "STP_DATABASE_URL": {
+                "type": "string",
+                "description": "jdbc connection string used for liquibase connectivity"
+              },
+              "STP_DATABASE_SCHEMA": {
+                "type": "string",
+                "description": "default schema name in which the connection is made "
+              },
+              "STP_VAULT_LIQUIBASE_KEY_PATH": {
+                "type": "string",
+                "description": "vault mount path in which database key are stored"
+              },
+              "STP_VAULT_LIQUIBASE_DB_CRED_ID": {
+                "type": "string",
+                "description": "credential id to access the vault mount point "
+              },
+              "STP_VAULT_LIQUIBASE_DB_USER_ID_KEY": {
+                "type": "string",
+                "description": "key in vault in which db user id is stored "
+              },
+              "STP_VAULT_LIQUIBASE_DB_PASSWORD_KEY": {
+                "type": "string",
+                "description": "key in vault in which db password is stored "
+              },
+              "STP_LIQUIBASE_PROPS_FILE_PATH": {
+                "type": "string",
+                "description": "if application has many input parameters to the liquibase command or the place holders that needs to be replaced in the script can use this, users can give all the values except the db username and password which should be a placeholder to be repalced "
+              },
+              "STP_LIQUIBASE_COMMAND": {
+                "type": "string",
+                "description": "Liquibase command that gets executed if provided  "
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_BUILD_VERSION","CMP_ARTIFACT_NAME","STP_ARTIFACT_PATH","STP_LOG_LEVEL","STP_DB_TYPE","STP_DATABASE_CHANGE_LOG_FILE","STP_DATABASE_SCHEMA","STP_VAULT_LIQUIBASE_KEY_PATH","STP_VAULT_LIQUIBASE_DB_CRED_ID","STP_VAULT_LIQUIBASE_DB_USER_ID_KEY","STP_VAULT_LIQUIBASE_DB_PASSWORD_KEY"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "MasterDeployJob": {
+                "type": "object",
+                "description": "Jenkins Shared Library deploying multiple build versions (for incremental builds) by triggerring child job. Ex: Pega, Datastage, IICS. When incremental builds are not applicable, runjenkinsjob library should be used for triggerring a child job.; technology_stack=Jenkins",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "STP_BUILD_JOB": {
+                "type": "string",
+                "description": "Provide the child job configuration. Make sure to follow the syntax (comma and space) as shown in the example"
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","STP_BUILD_JOB"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "MavenBuild": {
+                "type": "object",
+                "description": "Jenkins Shared Library for Java builds using Maven; technology_stack=Java, Mule",
+                "additionalProperties": false,
+                "properties": {
+              "STP_CMD": {
+                "type": "string",
+                "description": "maven goals"
+              },
+              "CMP_MAVEN_PROFILE": {
+                "type": "string",
+                "description": "maven profile defaulted to default,DEVOPS_BUILD"
+              }
+},
+                "required": []
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "MavenTest": {
+                "type": "object",
+                "description": "Maven Test; technology_stack=Java",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_MAVEN_PROFILE": {
+                "type": "string",
+                "description": "maven profile"
+              },
+              "STP_EXTRA": {
+                "type": "string",
+                "description": "extra parameters to mvn command"
+              }
+},
+                "required": []
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "MuleDeployment": {
+                "type": "object",
+                "description": "Mule deployment supporting both Hybrid and RTF deployment model; technology_stack=Mule",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_MULE_DEPLOYMENT_MODEL": {
+                "type": "string",
+                "description": "deployment model - HYBRID or RTF"
+              },
+              "APP_ENV": {
+                "type": "string",
+                "description": "spring cloud config suffix"
+              },
+              "GBL_GITHUB_CLONE_CRED_ID": {
+                "type": "string",
+                "description": "Jenkins credential id to clone repository"
+              },
+              "CMP_HIP": {
+                "type": "string",
+                "description": "hip"
+              },
+              "GBL_ANYPOINT_ORG": {
+                "type": "string",
+                "description": "anypoint organization"
+              },
+              "CMP_ANYPOINT_ENV": {
+                "type": "string",
+                "description": "anypoint environment"
+              },
+              "STP_APPLICATION_NAME": {
+                "type": "string",
+                "description": "application name"
+              },
+              "CMP_TARGET_ID": {
+                "type": "string",
+                "description": "target id"
+              },
+              "STP_APP_FILE": {
+                "type": "string",
+                "description": "local file or http for deployment"
+              }
+},
+                "required": []
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "MuleDeploymentAggregator": {
+                "type": "object",
+                "description": "Mule deployment aggregator pattern; technology_stack=Mule",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_MULE_DEPLOYMENT_MODEL": {
+                "type": "string",
+                "description": "deployment model - HYBRID or RTF"
+              },
+              "APP_ENV": {
+                "type": "string",
+                "description": "spring cloud config suffix"
+              },
+              "GBL_GITHUB_CLONE_CRED_ID": {
+                "type": "string",
+                "description": "Jenkins credential id to clone repository"
+              },
+              "CMP_HIP": {
+                "type": "string",
+                "description": "hip"
+              },
+              "GBL_ANYPOINT_ORG": {
+                "type": "string",
+                "description": "anypoint organization"
+              },
+              "CMP_ANYPOINT_ENV": {
+                "type": "string",
+                "description": "anypoint environment"
+              },
+              "STP_APPLICATION_NAME": {
+                "type": "string",
+                "description": "application name"
+              },
+              "CMP_TARGET_ID": {
+                "type": "string",
+                "description": "target id"
+              },
+              "STP_APP_FILE": {
+                "type": "string",
+                "description": "local file or http for deployment"
+              }
+},
+                "required": []
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "NPMBuild": {
+                "type": "object",
+                "description": "Jenkins Shared Library for NPM Build; technology_stack=nodeJS",
+                "additionalProperties": false,
+                "properties": {
+              "STP_SOURCE_CODE_BASE_DIR": {
+                "type": "string",
+                "description": "Application Source code base directory"
+              },
+              "STP_RUN_NPM_INSTALL": {
+                "type": "string",
+                "description": "Specify whether NPM Installation command should be executed or not",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_NPM_COMMAND": {
+                "type": "string",
+                "description": "NPM Build Command"
+              },
+              "STP_DEPLOYABLE_PACKAGE_PATH": {
+                "type": "string",
+                "description": "Deployable package path - Optional - Path where artifacts will be generated when build command executes successfully"
+              },
+              "STP_ARCHIVE_PATTERN": {
+                "type": "string",
+                "description": "Artifacts pattern to be included in the package if the package type is zip"
+              },
+              "STP_ARTIFACT_propertyType": {
+                "type": "string",
+                "description": "Artifact type - Optional - Type of the artifacts that will be generated during the build"
+              }
+},
+                "required": ["STP_NPM_COMMAND"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "NPMUnitTest": {
+                "type": "object",
+                "description": "Jenkins Shared Library for NodeJs Unit Test; technology_stack=NodeJs",
+                "additionalProperties": false,
+                "properties": {
+              "STP_SOURCE_CODE_BASE_DIR": {
+                "type": "string",
+                "description": "Application Source code base directory"
+              },
+              "STP_RUN_NPM_INSTALL": {
+                "type": "string",
+                "description": "Specify whether NPM Installation command should be executed or not",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_NPM_COMMAND": {
+                "type": "string",
+                "description": "NPM test Command"
+              }
+},
+                "required": ["STP_NPM_COMMAND"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "PCFDeployment": {
+                "type": "object",
+                "description": "Jenkins Shared Library for PCF Deployment; technology_stack=pcf",
+                "additionalProperties": false,
+                "properties": {
+              "STP_ARTIFACT_PATH": {
+                "type": "string",
+                "description": "Directory path in which deployable artifacts are located"
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": ""
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag if enabled to true ArtifactoryPromotion library is invoked, we need to give every required variable for the step ArtifactoryPromotion",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACTORYDOWNLOAD": {
+                "type": "string",
+                "description": "Artifact download flag if enabled to true ArtifactoryDownload library is invoked, we need to give every required variable for the step ArtifactoryDownload",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_MANIFEST_YML_PATH": {
+                "type": "string",
+                "description": "PCF Manifest yaml file path"
+              },
+              "STP_CONFIG_JSON_PATH": {
+                "type": "string",
+                "description": "PCF env specific config json file path"
+              },
+              "STP_TARGET_JSON_PATH": {
+                "type": "string",
+                "description": "Path to which config files needs to be copied, It is required when STP_CONFIG_JSON_PATH is provided"
+              },
+              "STP_DEPLOY_PACKAGE_PATH": {
+                "type": "string",
+                "description": "Path to the deployable packages in jenkins workspace"
+              },
+              "STP_PCF_APP_NAME": {
+                "type": "string",
+                "description": "Holds the PCF app name to be used for deployments"
+              },
+              "STP_PCF_SPACE_NAME": {
+                "type": "string",
+                "description": "Holds the PCF space name to be used for deployments"
+              },
+              "STP_PCF_ORG_NAME": {
+                "type": "string",
+                "description": "Holds the PCF ORG name to be used for deployments"
+              },
+              "STP_PCF_TYPE": {
+                "type": "string",
+                "description": "Indicates whether PCF Deployment is to ONPREM or CARBON",
+"oneOf": [
+
+              {
+                "const": "ONPREM"
+              },
+              {
+                "const": "CARBON"
+              }
+]
+              },
+              "CMP_DEPLOYMENT_TYPE": {
+                "type": "string",
+                "description": "Indicates whether current deployment is to Active or failover environments",
+"oneOf": [
+
+              {
+                "const": "ACTIVE"
+              },
+              {
+                "const": "FAILOVER"
+              }
+]
+              },
+              "STP_PCF_API_URI": {
+                "type": "string",
+                "description": "PCF Application URI",
+"oneOf": [
+
+              {
+                "const": "NA"
+              }
+]
+              },
+              "STP_ENV_VAULT_KEY_PATH": {
+                "type": "string",
+                "description": "Vault key path getting the environment variables to be injected as env variable in manifest.yml file "
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_BUILD_VERSION","STP_MANIFEST_YML_PATH"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "PaaSPCFUtilities": {
+                "type": "object",
+                "description": "To call the PaaS enablement modules to do the PCF start,restart,stop and restage, The pipeline config.yml should list all the components that needs to be acted as a seperate PaaSPCFUtilities step . List of components that needs to acted upon can be provided as the comma seperated string; technology_stack=pcf",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "STP_PCF_APP_NAME": {
+                "type": "string",
+                "description": "Holds the PCF app name to be used for deployments"
+              },
+              "STP_PCF_SPACE_NAME": {
+                "type": "string",
+                "description": "Holds the PCF space name to be used for deployments"
+              },
+              "STP_PCF_ORG_NAME": {
+                "type": "string",
+                "description": "Holds the PCF ORG name to be used for deployments"
+              },
+              "STP_PCF_TYPE": {
+                "type": "string",
+                "description": "Indicates whether PCF Deployment is to ONPREM or CARBON",
+"oneOf": [
+
+              {
+                "const": "ONPREM"
+              },
+              {
+                "const": "CARBON"
+              }
+]
+              },
+              "CMP_PCF_APP_LIST": {
+                "type": "string",
+                "description": "List of PCF cmp_name as comma seperated string only the cmp_name matching this list will be acted upon"
+              },
+              "STP_PCF_ACTION": {
+                "type": "string",
+                "description": "Indicates what action that needs to be performed on the PCF component Name start,restart,stop and restage"
+              },
+              "STP_PCF_API_URI": {
+                "type": "string",
+                "description": "PCF Application URI",
+"oneOf": [
+
+              {
+                "const": "NA"
+              }
+]
+              },
+              "STP_ENV_VAULT_KEY_PATH": {
+                "type": "string",
+                "description": "Vault key path getting the environment variables to be injected as env variable in manifest.yml file "
+              }
+},
+                "required": ["CMP_NAME","STP_PCF_TYPE","CMP_PCF_APP_LIST","STP_PCF_ACTION"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "PegaBuild": {
+                "type": "object",
+                "description": "Jenkins Shared Library for builds using Liquibase; technology_stack=Pega",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_TECHNOLOGY_VERSION": {
+                "type": "string",
+                "description": "Component Technology Version, As a standard, recommended to include wherever possible"
+              },
+              "STP_CATALOGFILE_NM": {
+                "type": "string",
+                "description": "Name of the csv file where pega product name and version are mentioned"
+              },
+              "STP_DROP_NAME": {
+                "type": "string",
+                "description": "Name of the drop folder in the source repo in which the catalog file for the current build is placed - Provide the jenkins job parameter here"
+              },
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              },
+              "STP_PEGA_REST_URL": {
+                "type": "string",
+                "description": "PEGA Rest API URL for performing export and import functions"
+              },
+              "STP_JAVA_HOME_TOOL_NAME": {
+                "type": "string",
+                "description": "Tool constant name for the jdk home to be used during the deployment",
+"oneOf": [
+
+              {
+                "const": "JDK_18"
+              },
+              {
+                "const": "JDK_10"
+              },
+              {
+                "const": "JDK_11 - Mention tool constant name of Java with version 8 or above"
+              }
+]
+              },
+              "STP_REQUEST_TIMEOUT": {
+                "type": "string",
+                "description": "Timeout value that needs to be used for prpcutils import / export operations. Value should be mentioned in seconds"
+              },
+              "STP_VAULT_PEGA_KEY_PATH": {
+                "type": "string",
+                "description": "Vault key path where pega connection related credentials are stored on hash corp vault"
+              },
+              "STP_VAULT_PEGA_USER_ID_KEY": {
+                "type": "string",
+                "description": "User ID Key to be used on retreive PEGA operator User Name from vault"
+              },
+              "STP_VAULT_PEGA_PASSWORD_KEY": {
+                "type": "string",
+                "description": "User ID Key to be used on retreive PEGA operator password from vault"
+              },
+              "STP_DEVOPS_VAULT_APP_CRED_ID": {
+                "type": "string",
+                "description": "User ID Key to be used on retreive PEGA operator User Name from vault"
+              }
+},
+                "required": ["STP_DROP_NAME","CMP_ARTIFACT_NAME","STP_PEGA_REST_URL"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "PegaDeploy": {
+                "type": "object",
+                "description": "Jenkins Shared Library for pega deployment; technology_stack=Pega",
+                "additionalProperties": false,
+                "properties": {
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACTORYDOWNLOAD": {
+                "type": "string",
+                "description": "Artifact Download flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_TECHNOLOGY_ARTIFACTORY_REPO": {
+                "type": "string",
+                "description": "Artifactory Repo type used for fetch the artifact local repo to which an artifact should be published conditionally mandatory for pipelinetype ci|cicd|pullrequest|dml_cicd|",
+"oneOf": [
+
+              {
+                "const": "java"
+              },
+              {
+                "const": "uxui"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "python"
+              },
+              {
+                "const": "generic"
+              },
+              {
+                "const": "dotnet"
+              },
+              {
+                "const": "nuget"
+              }
+]
+              },
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": "Component version to be deployed to higher environments"
+              },
+              "CMP_TECHNOLOGY_VERSION": {
+                "type": "string",
+                "description": "Component Technology Version, As a standard, recommended to include wherever possible"
+              },
+              "STP_ARTIFACT_PATTERN": {
+                "type": "string",
+                "description": "Artifact pattern that should be used for downloading the artifacts from JFROG Artifactory"
+              },
+              "STP_PEGA_REST_URL": {
+                "type": "string",
+                "description": "PEGA Rest API URL for performing export and import functions"
+              },
+              "STP_JAVA_HOME_TOOL_NAME": {
+                "type": "string",
+                "description": "Tool constant name for the jdk home to be used during the deployment",
+"oneOf": [
+
+              {
+                "const": "JDK_18"
+              },
+              {
+                "const": "JDK_10"
+              },
+              {
+                "const": "JDK_11 - Mention tool constant name of Java with version 8 or above"
+              }
+]
+              },
+              "STP_REQUEST_TIMEOUT": {
+                "type": "string",
+                "description": "Timeout value that needs to be used for prpcutils import / export operations. Value should be mentioned in seconds"
+              },
+              "STP_VAULT_PEGA_KEY_PATH": {
+                "type": "string",
+                "description": "Vault key path where pega connection related credentials are stored on hash corp vault"
+              },
+              "STP_VAULT_PEGA_USER_ID_KEY": {
+                "type": "string",
+                "description": "User ID Key to be used on retreive PEGA operator User Name from vault"
+              },
+              "STP_VAULT_PEGA_PASSWORD_KEY": {
+                "type": "string",
+                "description": "User ID Key to be used on retreive PEGA operator password from vault"
+              },
+              "STP_DEVOPS_VAULT_APP_CRED_ID": {
+                "type": "string",
+                "description": "User ID Key to be used on retreive PEGA operator User Name from vault"
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_TECHNOLOGY_ARTIFACTORY_REPO","CMP_ARTIFACT_NAME","CMP_BUILD_VERSION","STP_PEGA_REST_URL"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "PromoteDockerArtifact": {
+                "type": "object",
+                "description": "Jenkins Shared Library for promoting the Docker Image in Artifactory; technology_stack=docker",
+                "additionalProperties": false,
+                "properties": {
+              "STP_DOCKER_IMAGE_NAME": {
+                "type": "string",
+                "description": "to find the artifact in artifactory and promote the artifact to target region in artifactory"
+              },
+              "STP_TARGET_REPO": {
+                "type": "string",
+                "description": "To promote the docker image to target docker registory of artifactory"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": "build Version of the image we are promoting"
+              }
+},
+                "required": ["STP_DOCKER_IMAGE_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "RMQUtilities": {
+                "type": "object",
+                "description": "To perform following action in pcf rmq (purgequeue/create/delete/user_management); technology_stack=mq",
+                "additionalProperties": false,
+                "properties": {
+              "STP_PCF_SPACE_NAME": {
+                "type": "string",
+                "description": "Name of PCF space name in which rabbitmq to be created/updated , Required only when we need to override the application_environment"
+              },
+              "STP_PCF_ORG_NAME": {
+                "type": "string",
+                "description": "Name of PCF space name in which rabbitmq to be created/updated , Required only when we need to override the APP_PCF_ORG_NAME"
+              },
+              "STP_PCF_TYPE": {
+                "type": "string",
+                "description": "Name of PCF infra structure, Required only when we need to override the APP_PCF_TYPE"
+              },
+              "CMP_DEPLOYMENT_TYPE": {
+                "type": "string",
+                "description": "To know it is getting deployed to Active or Passive PCF infra based on this api url are built"
+              },
+              "CMP_RMQ_ACTION": {
+                "type": "string",
+                "description": "Name of the action (purgequeue/create/delete/user_management) that are possible . Based on this stage name will be displayed"
+              },
+              "STP_RMQ_INSTANCE_NAME": {
+                "type": "string",
+                "description": "name of the RMQ instance name like messagequeue"
+              },
+              "STP_RMQ_NAME": {
+                "type": "string",
+                "description": "used only when purgequeue is the CMP_RMQ_ACTION"
+              },
+              "STP_RMQ_VAULT_APP_ROLE": {
+                "type": "string",
+                "description": "required if the CMP_RMQ_ACTION is user management allows to fetch the user.It is the App role configured in Jenkins to connect to Vault"
+              },
+              "STP_RMQ_VAULT_USERS_KEY": {
+                "type": "string",
+                "description": "required if the CMP_RMQ_ACTION is user management Vault location where users are configured"
+              },
+              "STP_RMQ_USER_KEY_NAME": {
+                "type": "string",
+                "description": "Name of the service key for Jenkins, generally jenkins-user"
+              },
+              "STP_RMQ_INSTANCE_PLAN": {
+                "type": "string",
+                "description": "Name of the RMQ instance plan used when CMP_RMQ_ACTION is create"
+              }
+},
+                "required": ["STP_PCF_SPACE_NAME","STP_PCF_ORG_NAME","STP_PCF_TYPE","CMP_DEPLOYMENT_TYPE","CMP_RMQ_ACTION","STP_RMQ_INSTANCE_NAME","STP_RMQ_NAME","STP_RMQ_VAULT_APP_ROLE","STP_RMQ_VAULT_USERS_KEY","STP_RMQ_USER_KEY_NAME","STP_RMQ_INSTANCE_PLAN"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "RMQobjectDeployment": {
+                "type": "object",
+                "description": "To deploy the Rabbitmqobjects in PCF using terraform; technology_stack=mq",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": ""
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag if enabled to true ArtifactoryPromotion library is invoked, we need to give every required variable for the step ArtifactoryPromotion",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACTORYDOWNLOAD": {
+                "type": "string",
+                "description": "Artifact download flag if enabled to true ArtifactoryDownload library is invoked, we need to give every required variable for the step ArtifactoryDownload",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_PCF_SPACE_NAME": {
+                "type": "string",
+                "description": "Name of PCF space name in which rabbitmq to be created/updated , Required only when we need to override the application_environment"
+              },
+              "STP_PCF_ORG_NAME": {
+                "type": "string",
+                "description": "Name of PCF space name in which rabbitmq to be created/updated , Required only when we need to override the APP_PCF_ORG_NAME"
+              },
+              "STP_PCF_TYPE": {
+                "type": "string",
+                "description": "Name of PCF infra structure, Required only when we need to override the APP_PCF_TYPE"
+              },
+              "CMP_DEPLOYMENT_TYPE": {
+                "type": "string",
+                "description": "To know it is getting deployed to Active or Passive PCF infra based on this api url are built"
+              },
+              "STP_RMQ_INSTANCE_NAME": {
+                "type": "string",
+                "description": "name of the RMQ instance name like messagequeue"
+              },
+              "STP_RMQ_USER_KEY_NAME": {
+                "type": "string",
+                "description": "Name of the service key for Jenkins, generally jenkins-user"
+              },
+              "STP_RMQ_ENV_NAME": {
+                "type": "string",
+                "description": "used as the variable in the terrafrom module"
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_BUILD_VERSION","STP_PCF_SPACE_NAME","STP_PCF_ORG_NAME","STP_PCF_TYPE","CMP_DEPLOYMENT_TYPE","STP_RMQ_INSTANCE_NAME","STP_RMQ_USER_KEY_NAME","STP_RMQ_ENV_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "RestartTomcat": {
+                "type": "object",
+                "description": "Jenkins Shared Library to restart Tomcat server(s); technology_stack=Java",
+                "additionalProperties": false,
+                "properties": {
+              "STP_DEPLOY_CONFIG_JSON_PATH": {
+                "type": "string",
+                "description": "Tomcat env specific config json file path"
+              }
+},
+                "required": ["STP_DEPLOY_CONFIG_JSON_PATH"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "RunAWSCommand": {
+                "type": "object",
+                "description": "Jenkins shared Library to run the AWS CLI Command or sh file which contains the nested AWS cli operation; technology_stack=AWS",
+                "additionalProperties": false,
+                "properties": {
+              "STP_AWS_COMMAND_LIST": {
+                "type": "array",
+                "description": "Can take a list of AWS commands ,each command is executed one after another. you can also execute the sh file which does some AWS operation, but your sh file should return proper Exit code"
+              },
+              "STP_AWS_CRED_PATH": {
+                "type": "string",
+                "description": "vault mount path to get the secerts for AWS connection"
+              },
+              "STP_DISPLAY_NAME": {
+                "type": "string",
+                "description": "Stage Name to be displayed"
+              },
+              "STP_VAULT_CRED_ID": {
+                "type": "string",
+                "description": "vault cred id to be used to retrieve secrets"
+              }
+},
+                "required": ["STP_AWS_COMMAND_LIST","STP_AWS_CRED_PATH","STP_DISPLAY_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "RunCommand": {
+                "type": "object",
+                "description": "Jenkins Shared Library for running sh command on linux jenkins node / remote linux machine or bat command on window jenkins node . Every commands is expected to complete in 4 seconds , use explicit sleep if the subsequent command needs to wait for the output; technology_stack=Script",
+                "additionalProperties": false,
+                "properties": {
+              "STP_DISPLAY_NAME": {
+                "type": "string",
+                "description": "to specify the custom name for this particular stage in jenkins"
+              },
+              "STP_RUN_CMD": {
+                "type": "object",
+                "description": "it allows you to specify multiple commands that can be executed one after the another in a specific order STP_RUN_CMD_1: docker pull global.artifactory.devops.aig.net:7557/com/aig/commercial/common/uw-fei-1751:2.0.0.165; sleep 180 STP_RUN_CMD_2: docker tag global.artifactory.devops.aig.net:7557/com/aig/commercial/common/uw-fei-1751:2.0.0.165 uw-fei-services-1751:2.0.0.165; "
+              }
+},
+                "required": ["STP_RUN_CMD"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "RunJenkinsJob": {
+                "type": "object",
+                "description": "Jenkins Shared Library for running another Jenkins job; technology_stack=Jenkins",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "STP_JENKINS_JOB_URL": {
+                "type": "string",
+                "description": "complete jenkins job url of the job that needs to be run"
+              },
+              "STP_JOB_WAIT_FLAG": {
+                "type": "string",
+                "description": "WAIT For the child job to be executed",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_JOB_PROPAGATE_FLAG": {
+                "type": "string",
+                "description": "",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_PARAM_param1": {
+                "type": "string",
+                "description": "Provide the parameters 1...n that needs to be passed to the child job. String that comes after STP_PARAM_ is considered as parameter name and the same is passed to child job"
+              },
+              "STP_PARAM_param2": {
+                "type": "string",
+                "description": "Provide the parameters 1...n that needs to be passed to the child job. String that comes after STP_PARAM_ is considered as parameter name and the same is passed to child job"
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","STP_JENKINS_JOB_URL"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "RunPSCommand": {
+                "type": "object",
+                "description": "Jenkins Shared Library for running powershell command/script in Windows localhost/remotehost; technology_stack=Powershell",
+                "additionalProperties": false,
+                "properties": {
+              "STP_DISPLAY_NAME": {
+                "type": "string",
+                "description": "to specify the custom name for this particular stage in jenkins"
+              },
+              "STP_PS_SCRIPT": {
+                "type": "string",
+                "description": "to specify the powershell script to be executed"
+              },
+              "STP_PS_SCRIPT_PATH": {
+                "type": "string",
+                "description": "to specify the powershell script file path to be executed"
+              },
+              "STP_IS_PS_TEMPLATE": {
+                "type": "boolean",
+                "description": "to specify if the script/script file is groovy template which has placeholders to be replaced"
+              },
+              "STP_VAULT_CONFIG": {
+                "type": "object",
+                "description": "To specify multiple vault cred ids and corresponding paths to pull vault creds to use in template placeholders. Example below;    STP_VAULT_CONFIG: ;       gi-vault-db-non-prod: ;         - gi/common/dbshared/uw/uw-insight-4613/ddl/qa;         - gi/common/dbshared/uw/uw-insight-4613/ddl/qa;       gi-vault-app-role-non-prod: ;         - gi/common/comdevops/apps/uw-insight-4613 ; "
+              }
+},
+                "required": []
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "S3CloudFrontDeployment": {
+                "type": "object",
+                "description": "Jenkins Shared Library for builds using Liquibase; technology_stack=S3",
+                "additionalProperties": false,
+                "properties": {
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACTORYDOWNLOAD": {
+                "type": "string",
+                "description": "Artifact Download flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_TECHNOLOGY_ARTIFACTORY_REPO": {
+                "type": "string",
+                "description": "Artifactory Repo type used for fetch the artifact local repo to which an artifact should be published conditionally mandatory for pipelinetype ci|cicd|pullrequest|dml_cicd|",
+"oneOf": [
+
+              {
+                "const": "java"
+              },
+              {
+                "const": "uxui"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "python"
+              },
+              {
+                "const": "generic"
+              },
+              {
+                "const": "dotnet"
+              },
+              {
+                "const": "nuget"
+              }
+]
+              },
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": "Component version to be deployed to higher environments"
+              },
+              "STP_ARTIFACT_PATTERN": {
+                "type": "string",
+                "description": "Artifact pattern that should be used for downloading the artifacts from JFROG Artifactory. Not mandatory, default vaule will be generated if value is not provided"
+              },
+              "STP_ARTIFACT_TARGET": {
+                "type": "string",
+                "description": "Location where the "
+              },
+              "STP_PACKAGE_UNZIP": {
+                "type": "string",
+                "description": "Determines if the package needs to be unzipped after downloading from artifactory",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACT_DIR": {
+                "type": "string",
+                "description": "Directory path in which deployable artifacts are located"
+              },
+              "STP_AWS_S3_COPY_ARTIFACTS_PATTERN": {
+                "type": "string",
+                "description": "Pattern of the files that needs to be copied to S3 bucket"
+              },
+              "STP_APP_BASE_FOLDER_NAME": {
+                "type": "string",
+                "description": "Target base folder on the S3 bucket if it is not root directory"
+              },
+              "STP_AWS_S3_BUCKET_NAME": {
+                "type": "string",
+                "description": "AWS S3 bucket name"
+              },
+              "STP_AWS_INVALIDATE_CLOUD_FRONT": {
+                "type": "string",
+                "description": "To determine if cloudfront invalidation needs to be performed after s3 deployment",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_AWS_CLOUD_FRONT_DISTRIBUTION_ID": {
+                "type": "string",
+                "description": "Cloud front distriution id for invalidation"
+              },
+              "STP_AWS_WAIT_FOR_CF_INVALIDATION": {
+                "type": "string",
+                "description": "Determines if the pipeline needs to wait for cloud front invalidation to complete or no",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ENV_SPECIFIC_CONFIG_PROPS_PATH": {
+                "type": "string",
+                "description": "Path where environment specific files that needs to be dynamically copied are placed"
+              },
+              "STP_ENV_SPECIFIC_CONFIG_PROPS_PATTERN": {
+                "type": "string",
+                "description": "Pattern of the environment specific files that needs to be copied to the s3 bucket"
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_TECHNOLOGY_ARTIFACTORY_REPO","CMP_ARTIFACT_NAME","CMP_BUILD_VERSION","STP_AWS_S3_BUCKET_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "S3Deployment": {
+                "type": "object",
+                "description": "Jenkins Shared Library for builds using Liquibase; technology_stack=S3",
+                "additionalProperties": false,
+                "properties": {
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACTORYDOWNLOAD": {
+                "type": "string",
+                "description": "Artifact Download flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_TECHNOLOGY_ARTIFACTORY_REPO": {
+                "type": "string",
+                "description": "Artifactory Repo type used for fetch the artifact local repo to which an artifact should be published conditionally mandatory for pipelinetype ci|cicd|pullrequest|dml_cicd|",
+"oneOf": [
+
+              {
+                "const": "java"
+              },
+              {
+                "const": "uxui"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "python"
+              },
+              {
+                "const": "generic"
+              },
+              {
+                "const": "dotnet"
+              },
+              {
+                "const": "nuget"
+              }
+]
+              },
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": "Component version to be deployed to higher environments"
+              },
+              "STP_ARTIFACT_PATTERN": {
+                "type": "string",
+                "description": "Artifact pattern that should be used for downloading the artifacts from JFROG Artifactory. Not mandatory, default vaule will be generated if value is not provided"
+              },
+              "STP_ARTIFACT_TARGET": {
+                "type": "string",
+                "description": "Jenkins workspace location where the artifact needs to be downloaded to"
+              },
+              "STP_AWS_S3_COPY_SOURCE_FILE_NAME": {
+                "type": "string",
+                "description": "Source package file name to be copied to s3 bucket / file in which the contents that should be copied as part of deployment are zipped"
+              },
+              "STP_AWS_S3_COPY_TARGET_FILE_NAME": {
+                "type": "string",
+                "description": "Target package file name to be copied to s3"
+              },
+              "STP_PACKAGE_UNZIP": {
+                "type": "string",
+                "description": "Determines if the package needs to be unzipped after downloading from artifactory",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACT_DIR": {
+                "type": "string",
+                "description": "Directory path in which deployable artifacts are located"
+              },
+              "CMP_CATALOG_FILE_NAME": {
+                "type": "string",
+                "description": "Name of the catalog file to be used when deploying specfic set of files (incremental deployments)"
+              },
+              "STP_APP_BASE_FOLDER_NAME": {
+                "type": "string",
+                "description": "Target base folder on the S3 bucket if it is not root directory"
+              },
+              "STP_AWS_S3_BUCKET_NAME": {
+                "type": "string",
+                "description": "AWS S3 bucket name"
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_TECHNOLOGY_ARTIFACTORY_REPO","CMP_ARTIFACT_NAME","CMP_BUILD_VERSION","STP_AWS_S3_BUCKET_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "SCPDeployment": {
+                "type": "object",
+                "description": "Jenkins Shared Library for builds using Liquibase; technology_stack=SCP",
+                "additionalProperties": false,
+                "properties": {
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACTORYDOWNLOAD": {
+                "type": "string",
+                "description": "Artifact Download flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_TECHNOLOGY_ARTIFACTORY_REPO": {
+                "type": "string",
+                "description": "Artifactory Repo type used for fetch the artifact local repo to which an artifact should be published conditionally mandatory for pipelinetype ci|cicd|pullrequest|dml_cicd|",
+"oneOf": [
+
+              {
+                "const": "java"
+              },
+              {
+                "const": "uxui"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "python"
+              },
+              {
+                "const": "generic"
+              },
+              {
+                "const": "dotnet"
+              },
+              {
+                "const": "nuget"
+              }
+]
+              },
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": "Component version to be deployed to higher environments"
+              },
+              "STP_ARTIFACT_PATTERN": {
+                "type": "string",
+                "description": "Artifact pattern that should be used for downloading the artifacts from JFROG Artifactory. Not mandatory, default vaule will be generated if value is not provided"
+              },
+              "STP_ARTIFACT_TARGET": {
+                "type": "string",
+                "description": "Jenkins workspace location where the artifact needs to be downloaded to"
+              },
+              "STP_PACKAGE_UNZIP": {
+                "type": "string",
+                "description": "Determines if the package needs to be unzipped after downloading from artifactory",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACT_DIR": {
+                "type": "string",
+                "description": "Directory path in which deployable artifacts are located"
+              },
+              "STP_CATALOG_FILE_NAME": {
+                "type": "string",
+                "description": "Name of the catalog file to be used when deploying specfic set of files (incremental deployments)"
+              },
+              "STP_APP_BASE_FOLDER_NAME": {
+                "type": "string",
+                "description": "Target base folder on the S3 bucket if it is not root directory"
+              },
+              "STP_SSH_USERID": {
+                "type": "string",
+                "description": "User Id to be used for performing SSH connection to the host where files are being copied to"
+              },
+              "STP_SSH_HOSTNAME": {
+                "type": "string",
+                "description": "Host name to be used for SSH connection for copying the files to"
+              },
+              "STP_SSH_KEYPATH": {
+                "type": "string",
+                "description": "SSH Key path to be used for ssh connection"
+              },
+              "STP_SSH_TARGETPATH": {
+                "type": "string",
+                "description": "Target base directory path to which the files are to be copied on to the host"
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_TECHNOLOGY_ARTIFACTORY_REPO","CMP_ARTIFACT_NAME","CMP_BUILD_VERSION","STP_SSH_USERID","STP_SSH_HOSTNAME","STP_SSH_KEYPATH","STP_SSH_TARGETPATH"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "SonarQubeScan": {
+                "type": "object",
+                "description": "Jenkins Shared Library to do code analysis using SonarQube Scan; technology_stack=SonarQube",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_JAVA_VERSION": {
+                "type": "string",
+                "description": "Java installation path for running sonar"
+              },
+              "STP_SONAR_PROPS_FILE": {
+                "type": "string",
+                "description": "Sonar properties file path - Optional - If not mentioned, define the sonar properties directly in step varibales"
+              },
+              "STP_SONAR_PROJECT_KEY": {
+                "type": "string",
+                "description": "Sonar Project key"
+              },
+              "STP_SONAR_PROJECT_NAME": {
+                "type": "string",
+                "description": "Sonar Project Name"
+              }
+},
+                "required": ["STP_SONAR_PROJECT_KEY","STP_SONAR_PROJECT_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "SpringCloudPasswordCheck": {
+                "type": "object",
+                "description": "Jenkins Shared Library for Spring CLoud Password Check; technology_stack=Github, Shell",
+                "additionalProperties": false,
+                "properties": {
+              "STP_CONFIG_REPO_URL": {
+                "type": "string",
+                "description": "HTTPS Url of config repo"
+              },
+              "STP_SC_REPO_ORG": {
+                "type": "string",
+                "description": "Org of the STP_CONFIG_REPO_URL. Must be defined at APP or STP level"
+              },
+              "STP_SC_REPO_BRANCH": {
+                "type": "string",
+                "description": "Branch of the STP_CONFIG_REPO_URL."
+              },
+              "STP_SPRING_APPLICATION_NAME": {
+                "type": "string",
+                "description": "Spring application name"
+              },
+              "STP_SPRING_APPLICATION_ENV": {
+                "type": "string",
+                "description": "Spring application environment"
+              },
+              "STP_SPRING_CLOUD_FILE_NAME": {
+                "type": "string",
+                "description": "Spring cloud config file name"
+              }
+},
+                "required": ["STP_SPRING_APPLICATION_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "TemplateInterpolator": {
+                "type": "object",
+                "description": "Jenkins Shared Library for interpolating groovy templates. it can interpolate the values from vault and STP variables; technology_stack=Groovy",
+                "additionalProperties": false,
+                "properties": {
+              "STP_FILE_PATHS": {
+                "type": "string",
+                "description": "to specify files to be inerpolated. Comma-separated file paths"
+              },
+              "STP_FILE_PATTERN": {
+                "type": "string",
+                "description": "to specify files to be inerpolated. glob pattern eg: **/*.txt"
+              },
+              "STP_VAULT_CONFIG": {
+                "type": "string",
+                "description": "To specify multiple vault cred ids and corresponding paths to pull vault creds to use in template placeholders. Example below;    STP_VAULT_CONFIG: ;       gi-vault-db-non-prod: ;         - gi/common/dbshared/uw/uw-insight-4613/ddl/qa;         - gi/common/dbshared/uw/uw-insight-4613/ddl/qa;       gi-vault-app-role-non-prod: ;         - gi/common/comdevops/apps/uw-insight-4613 ; "
+              }
+},
+                "required": []
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "TerraformDeployment": {
+                "type": "object",
+                "description": "Jenkins Shared Library to run a Terraform supported function. Note get the values confirmed before executing this; technology_stack=terraform",
+                "additionalProperties": false,
+                "properties": {
+              "STP_VAULT_AWS_CREDS": {
+                "type": "string",
+                "description": "used for retrieving the AWS access key and secret key and set it as env variables override it only when you dont want the default"
+              },
+              "STP_TF_STATE_BUCKET": {
+                "type": "string",
+                "description": "bucket name where the terraform state files are stored "
+              },
+              "STP_TF_STATE_KEY": {
+                "type": "string",
+                "description": "s3 bucket key where the terraform state files are stored"
+              },
+              "STP_TF_AWS_REGION": {
+                "type": "string",
+                "description": "terraform to run the AWS modules across which aws region "
+              },
+              "STP_TF_SRC_DIR": {
+                "type": "string",
+                "description": "root dirctory in which terraform cli command should be executed i.e. directory in which the tf files are available"
+              },
+              "STP_TF_CMD": {
+                "type": "string",
+                "description": "terraform command that need to be executed , this gives an option to give any terraform comamnd like plan , apply and so with additonal options , note this is executed after terrafrom init command"
+              },
+              "STP_TF_VARS": {
+                "type": "string",
+                "description": "required only when custom terraform variables are need to be passed tokenized string for Ex:- 'clustername=rtf-dev;region=us-east-1' this is used for initializing terraform modules "
+              },
+              "GBL_TF_STATE_BUCKET": {
+                "type": "string",
+                "description": ""
+              },
+              "GBL_TF_STATE_DYNAMODB_TABLE": {
+                "type": "string",
+                "description": ""
+              },
+              "GBL_TF_VERSION": {
+                "type": "string",
+                "description": ""
+              }
+},
+                "required": ["STP_VAULT_AWS_CREDS","STP_TF_STATE_BUCKET","STP_TF_STATE_KEY","STP_TF_AWS_REGION","STP_TF_SRC_DIR","STP_TF_CMD","GBL_TF_STATE_BUCKET","GBL_TF_STATE_DYNAMODB_TABLE","GBL_TF_VERSION"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "TomcatDeployment": {
+                "type": "object",
+                "description": "Jenkins Shared Library to deploy content to Tomcat/TomEE servers, we have to download the artifact for all regions except dev as we have artifact for dev pipeline in jenkins workspace; technology_stack=tomcat, tomee",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": ""
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag if enabled to true ArtifactoryPromotion library is invoked, we need to give every required variable for the step ArtifactoryPromotion",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACTORYDOWNLOAD": {
+                "type": "string",
+                "description": "Artifact download flag if enabled to true ArtifactoryDownload library is invoked, we need to give every required variable for the step ArtifactoryDownload",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_DEPLOY_CONFIG_JSON_PATH": {
+                "type": "string",
+                "description": "Tomcat env specific config json file path"
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_BUILD_VERSION","STP_DEPLOY_CONFIG_JSON_PATH"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "XLDeployDB": {
+                "type": "object",
+                "description": "Jenkins Shared Library for DB deployment using XLDeploy; technology_stack=XLDeploy",
+                "additionalProperties": false,
+                "properties": {
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_TECHNOLOGY_ARTIFACTORY_REPO": {
+                "type": "string",
+                "description": "Artifactory Repo type used for fetch the artifact local repo to which an artifact should be published conditionally mandatory for pipelinetype ci|cicd|pullrequest|dml_cicd|",
+"oneOf": [
+
+              {
+                "const": "java"
+              },
+              {
+                "const": "uxui"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "python"
+              },
+              {
+                "const": "generic"
+              },
+              {
+                "const": "dotnet"
+              },
+              {
+                "const": "nuget"
+              }
+]
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": "Component version to be deployed to higher environments"
+              },
+              "STP_ARTIFACT_PATTERN": {
+                "type": "string",
+                "description": "Artifact pattern that should be used for downloading the artifacts from JFROG Artifactory. Not mandatory, default vaule will be generated if value is not provided"
+              },
+              "STP_ARTIFACT_TARGET": {
+                "type": "string",
+                "description": "Location where the "
+              },
+              "STP_DEPLOY_CONFIG_JSON_PATH": {
+                "type": "string",
+                "description": "Config json file with application and environment record details for the component being deployed. Will be defaulted to CMP_DB_CONFIG_PATH"
+              },
+              "STP_XLD_ENV_PATH": {
+                "type": "string",
+                "description": "XL Deploy absolute environment path for the component. Default vaule will be picked from db config json file"
+              },
+              "STP_PUBLISH_DEPLOY": {
+                "type": "string",
+                "description": "xld deployment type - publish or deploy",
+"oneOf": [
+
+              {
+                "const": "deploy"
+              },
+              {
+                "const": "publish"
+              }
+]
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_TECHNOLOGY_ARTIFACTORY_REPO","CMP_BUILD_VERSION"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "XLDeployWAS": {
+                "type": "object",
+                "description": "Jenkins Shared Library for WAS deployment using XLDeploy; technology_stack=XLDeploy",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              },
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "STP_ARTIFACT_JAR_FILE_NAME": {
+                "type": "string",
+                "description": "Jar file name to be deployed in case of web deployments"
+              },
+              "STP_XLD_APP_FOLDER_NAME": {
+                "type": "string",
+                "description": "Applciation folder name in XL Deploy"
+              },
+              "STP_XLD_ABSOLUTE_APP_NAME": {
+                "type": "string",
+                "description": "XL Deploy absolute application name"
+              },
+              "STP_XLD_ABSOLUTE_ENV_NAME": {
+                "type": "string",
+                "description": "XL Deploy absolute environment name"
+              },
+              "STP_XLD_ARTIFACT_TYPE": {
+                "type": "string",
+                "description": "Type of the artifact that is being deployed, needed only when web deployments are available"
+              },
+              "STP_PUBLISH_DEPLOY": {
+                "type": "string",
+                "description": "xld deployment type - publish or deploy",
+"oneOf": [
+
+              {
+                "const": "deploy"
+              },
+              {
+                "const": "publish"
+              }
+]
+              }
+},
+                "required": ["CMP_ARTIFACT_NAME","STP_XLD_APP_FOLDER_NAME","STP_XLD_ABSOLUTE_APP_NAME","STP_XLD_ABSOLUTE_ENV_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "XldDeployment": {
+                "type": "object",
+                "description": "Jenkins Shared Library for deploying artifacts using XLD; technology_stack=XLD",
+                "additionalProperties": false,
+                "properties": {
+              "STP_ARTIFACTORYPROMOTION": {
+                "type": "string",
+                "description": "Artifact Promotion flag",
+"oneOf": [
+
+              {
+                "const": "true"
+              },
+              {
+                "const": "false"
+              }
+]
+              },
+              "CMP_NAME": {
+                "type": "string",
+                "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+              },
+              "CMP_TYPE": {
+                "type": "string",
+                "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+              {
+                "const": "api-gateway"
+              },
+              {
+                "const": "batch"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "dml"
+              },
+              {
+                "const": "etl"
+              },
+              {
+                "const": "bpm"
+              },
+              {
+                "const": "services"
+              },
+              {
+                "const": "ui"
+              },
+              {
+                "const": "duckcreek"
+              },
+              {
+                "const": "rules"
+              },
+              {
+                "const": "data"
+              },
+              {
+                "const": "report"
+              },
+              {
+                "const": "mq"
+              },
+              {
+                "const": "salesforce"
+              },
+              {
+                "const": "adobe"
+              },
+              {
+                "const": "rpa"
+              }
+]
+              },
+              "CMP_TECHNOLOGY_ARTIFACTORY_REPO": {
+                "type": "string",
+                "description": "Artifactory Repo type used for fetch the artifact local repo to which an artifact should be published conditionally mandatory for pipelinetype ci|cicd|pullrequest|dml_cicd|",
+"oneOf": [
+
+              {
+                "const": "java"
+              },
+              {
+                "const": "uxui"
+              },
+              {
+                "const": "db"
+              },
+              {
+                "const": "python"
+              },
+              {
+                "const": "generic"
+              },
+              {
+                "const": "dotnet"
+              },
+              {
+                "const": "nuget"
+              }
+]
+              },
+              "CMP_BUILD_NAME": {
+                "type": "string",
+                "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+              },
+              "CMP_BUILD_VERSION": {
+                "type": "string",
+                "description": "Component version to be deployed to higher environments"
+              },
+              "STP_XLD_PACKAGE_VERSION": {
+                "type": "string",
+                "description": "Component version to be deployed to higher environments"
+              },
+              "STP_ARTIFACT_PATTERN": {
+                "type": "string",
+                "description": "Artifact pattern that should be used for downloading the artifacts from JFROG Artifactory. Not mandatory, default vaule will be generated if value is not provided"
+              },
+              "STP_ARTIFACT_TARGET": {
+                "type": "string",
+                "description": "Jenkins workspace location where the artifact needs to be downloaded to"
+              },
+              "STP_XLD_ARTIFACT_PATH": {
+                "type": "string",
+                "description": "Artifactory url of the artifact to be deployed in case of web deployments"
+              },
+              "STP_ARTIFACT_JAR_FILE_NAME": {
+                "type": "string",
+                "description": "Name of the xl deploy artifact file that will be deployed"
+              },
+              "STP_XLD_ARTIFACT_PATH_JAR": {
+                "type": "string",
+                "description": "Artifactory url of the artifact to be deployed in case of web deployments"
+              },
+              "STP_XLD_APP_FOLDER_NAME": {
+                "type": "string",
+                "description": "Applciation folder name in XL Deploy"
+              },
+              "STP_XLD_ABSOLUTE_APP_NAME": {
+                "type": "string",
+                "description": "XL Deploy absolute application name"
+              },
+              "STP_XLD_ABSOLUTE_ENV_NAME": {
+                "type": "string",
+                "description": "XL Deploy absolute environment name"
+              },
+              "STP_XLD_ARTIFACT_TYPE": {
+                "type": "string",
+                "description": "Type of the artifact that is being deployed. ear / war / web needed only when web deployments are available",
+"oneOf": [
+
+              {
+                "const": "ear"
+              },
+              {
+                "const": "war"
+              },
+              {
+                "const": "web"
+              },
+              {
+                "const": "dotnet"
+              },
+              {
+                "const": "db"
+              }
+]
+              },
+              "STP_XLD_DEPLOYMENT_PATTERN": {
+                "type": "string",
+                "description": "xld deployment type - packageanddeploy or deploy",
+"oneOf": [
+
+              {
+                "const": "deploy"
+              },
+              {
+                "const": "packageanddeploy"
+              }
+]
+              },
+              "STP_XLD_MANIFEST_PATH": {
+                "type": "string",
+                "description": "Manifest file path inside config repo if not using the default manifest file."
+              }
+},
+                "required": ["CMP_NAME","CMP_TYPE","CMP_TECHNOLOGY_ARTIFACTORY_REPO","CMP_BUILD_VERSION","STP_ARTIFACT_JAR_FILE_NAME","STP_XLD_APP_FOLDER_NAME","STP_XLD_ABSOLUTE_APP_NAME","STP_XLD_ABSOLUTE_ENV_NAME"]
+              }
+            }
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "ZipBuild": {
+                "type": "object",
+                "description": "Jenkins Shared Library for builds using Liquibase; technology_stack=Zip",
+                "additionalProperties": false,
+                "properties": {
+              "CMP_ARTIFACT_NAME": {
+                "type": "string",
+                "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+              },
+              "STP_PACKAGE_DIR": {
+                "type": "string",
+                "description": "Target Directory path in which zip arvhive should be created (inside source-repo directroy)"
+              },
+              "STP_FILE_PATTERN": {
+                "type": "string",
+                "description": "Pattern of the files that should be archived, by default all the files will be archived"
+              }
+},
+                "required": ["CMP_ARTIFACT_NAME"]
+              }
+            }
+          }
+        ]
+      }
+    }, 
+    
+    "additionalProperties": false,
+    "component_properties": {
+      "type": "object",
+      "description": "Jenkins Shared Library to read component properties and load it to LibraryProperties, this properties can be placed as component.properties file in adjacent to your the pipeline config.yml or in component_properties key as values; technology_stack=Property",
+      "additionalProperties": false,
+      "properties": {
+        "CMP_REPO_URL": {
+          "type": "string",
+          "description": "Source code repository url ssh format and conditionally mandatory for ci|cicd|dml_cicd"
+        },
+        "CMP_NAME": {
+          "type": "string",
+          "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+        },
+        "CMP_TYPE": {
+          "type": "string",
+          "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+"oneOf": [
+
+        {
+          "const": "api-gateway"
+        },
+        {
+          "const": "batch"
+        },
+        {
+          "const": "db"
+        },
+        {
+          "const": "dml"
+        },
+        {
+          "const": "etl"
+        },
+        {
+          "const": "bpm"
+        },
+        {
+          "const": "services"
+        },
+        {
+          "const": "ui"
+        },
+        {
+          "const": "duckcreek"
+        },
+        {
+          "const": "rules"
+        },
+        {
+          "const": "data"
+        },
+        {
+          "const": "report"
+        },
+        {
+          "const": "mq"
+        },
+        {
+          "const": "salesforce"
+        },
+        {
+          "const": "adobe"
+        },
+        {
+          "const": "rpa"
+        }
+]
+        },
+        "CMP_BUILD_NAME": {
+          "type": "string",
+          "description": "Artifactory Build Name - As a best practice, always include GEAR ID as part of it"
+        },
+        "CMP_ARTIFACT_NAME": {
+          "type": "string",
+          "description": "Artifactory Name / Upload Pattern to be used for genrating build artifacts and uploading to JFROG - Mandatory"
+        },
+        "CMP_TECHNOLOGY_ARTIFACTORY_REPO": {
+          "type": "string",
+          "description": "Artifactory Repo type used for fetch the artifact local repo to which an artifact should be published conditionally mandatory for pipelinetype ci|cicd|pullrequest|dml_cicd|",
+"oneOf": [
+
+        {
+          "const": "java"
+        },
+        {
+          "const": "uxui"
+        },
+        {
+          "const": "db"
+        },
+        {
+          "const": "python"
+        },
+        {
+          "const": "generic"
+        },
+        {
+          "const": "dotnet"
+        },
+        {
+          "const": "nuget"
+        }
+]
+        },
+        "CMP_ARTIFACTORY_PUBLISH_REPO": {
+          "type": "string",
+          "description": "Artifactory publish repo - Optional, not needed if CMP_TECHNOLOGY_ARTIFACTORY_REPO is included.Can be overridden at step level using  STP_ARTIFACTORY_PUBLISH_REPO"
+        },
+        "CMP_ARTIFACTORY_VIRTUAL_REPO": {
+          "type": "string",
+          "description": "Artifactory Virtual repo - Optional, not needed if CMP_TECHNOLOGY_ARTIFACTORY_REPO is included.Can be overridden at step level using  STP_ARTIFACTORY_VIRTUAL_REPO"
+        },
+        "CMP_TECHNOLOGY_NAME": {
+          "type": "string",
+          "description": "Component Technology Name",
+"oneOf": [
+
+        {
+          "const": "java"
+        },
+        {
+          "const": "angular"
+        },
+        {
+          "const": "react"
+        },
+        {
+          "const": "nodejs"
+        },
+        {
+          "const": "datastage"
+        },
+        {
+          "const": "autosys"
+        },
+        {
+          "const": "iics"
+        },
+        {
+          "const": "dotnet_core"
+        },
+        {
+          "const": "dotnet_framework"
+        },
+        {
+          "const": "pega"
+        },
+        {
+          "const": "camunda"
+        },
+        {
+          "const": "duckcreek"
+        },
+        {
+          "const": "python"
+        },
+        {
+          "const": "blaze"
+        },
+        {
+          "const": "postgres"
+        },
+        {
+          "const": "db2"
+        },
+        {
+          "const": "mssql"
+        },
+        {
+          "const": "db"
+        },
+        {
+          "const": "oracle"
+        },
+        {
+          "const": "sybase"
+        },
+        {
+          "const": "exadata"
+        },
+        {
+          "const": "logstash"
+        },
+        {
+          "const": "rabbitmq"
+        },
+        {
+          "const": "abinitio"
+        },
+        {
+          "const": "ssis"
+        },
+        {
+          "const": "data"
+        },
+        {
+          "const": "java_db"
+        },
+        {
+          "const": "snowflake"
+        },
+        {
+          "const": "mule"
+        },
+        {
+          "const": "adobe_aem"
+        },
+        {
+          "const": "adobe_livecycle"
+        },
+        {
+          "const": "salesforce"
+        }
+]
+        },
+        "CMP_TECHNOLOGY_VERSION": {
+          "type": "string",
+          "description": "Component Technology Version, As a standard, recommended to include wherever possible"
+        },
+        "CMP_BUILD_TOOL": {
+          "type": "string",
+          "description": "Component Technology Build Tool Name required for the components with aiggradle as it is used in build management",
+"oneOf": [
+
+        {
+          "const": "gradle"
+        },
+        {
+          "const": "aiggradle"
+        },
+        {
+          "const": "node"
+        },
+        {
+          "const": "axis"
+        },
+        {
+          "const": "maven"
+        },
+        {
+          "const": "ant"
+        },
+        {
+          "const": "blaze"
+        },
+        {
+          "const": "zip"
+        },
+        {
+          "const": "pega"
+        },
+        {
+          "const": "pipenv"
+        },
+        {
+          "const": "nuget"
+        },
+        {
+          "const": "axis-electron"
+        },
+        {
+          "const": "msbuild"
+        },
+        {
+          "const": "adb"
+        },
+        {
+          "const": "docker"
+        },
+        {
+          "const": "custom"
+        },
+        {
+          "const": "iics"
+        },
+        {
+          "const": "sfdx"
+        },
+        {
+          "const": "vb6"
+        },
+        {
+          "const": "npm"
+        },
+        {
+          "const": "dotnet_core"
+        }
+]
+        },
+        "CMP_BUILD_TOOL_VERSION": {
+          "type": "string",
+          "description": "Component Technology Build Tool Version, As a standard, recommended to include wherever possible"
+        },
+        "CMP_INFRA_DEPLOYED": {
+          "type": "string",
+          "description": "Component deployment Infrastructure type Conditional, Mandatory for jenkins_pipeline_type - cicd, dml_cicd",
+"oneOf": [
+
+        {
+          "const": "aws"
+        },
+        {
+          "const": "dcod"
+        },
+        {
+          "const": "onprem"
+        },
+        {
+          "const": "snowflake"
+        },
+        {
+          "const": "salesforce"
+        },
+        {
+          "const": "Informatica"
+        },
+        {
+          "const": "saas"
+        },
+        {
+          "const": "azure"
+        },
+        {
+          "const": "aem"
+        },
+        {
+          "const": "tas"
+        }
+]
+        },
+        "CMP_SERVER_TYPE": {
+          "type": "string",
+          "description": "Component deployment server type Conditional, Mandatory for jenkins_pipeline_type - cicd, dml_cicd",
+"oneOf": [
+
+        {
+          "const": "tomcat"
+        },
+        {
+          "const": "pcf"
+        },
+        {
+          "const": "websphere"
+        },
+        {
+          "const": "iis"
+        },
+        {
+          "const": "mule_rtf"
+        },
+        {
+          "const": "mule_cluster"
+        },
+        {
+          "const": "apache"
+        },
+        {
+          "const": "aws_cloudfront"
+        },
+        {
+          "const": "aws_s3"
+        },
+        {
+          "const": "aws_lambda"
+        },
+        {
+          "const": "Other subjective values from CMP_TECHNOLOGY_NAME"
+        }
+]
+        },
+        "CMP_VERCODE_APP_ID": {
+          "type": "string",
+          "description": "Veracode APPID used for the future endeavor Conditional, Mandatory for all the technologies where veracode scan is needed"
+        },
+        "CMP_BRANCH_NAME": {
+          "type": "string",
+          "description": "branch name of the source code repo to be checked out"
+        },
+        "CMP_MAJOR_VERSION": {
+          "type": "string",
+          "description": "Major version no# for generating and publishing build and should be number [0-9]"
+        },
+        "CMP_MINOR_VERSION": {
+          "type": "string",
+          "description": "minor version no# for generating and publishing build and should be number [0-9]"
+        },
+        "CMP_PATCH_VERSION": {
+          "type": "string",
+          "description": "patch version no# for generating and publishing build and should be number [0-9]"
+        },
+        "CMP_EMAIL_DISTRO": {
+          "type": "string",
+          "description": "comma seperate email distribution for sending Component level deployment notification , this email list will be appended with APP_EMAIL_DISTRO "
+        },
+        "CMP_RELEASE_DATE": {
+          "type": "string",
+          "description": "Development start date of a particular release, Mandatory only for CI pipelines"
+        },
+        "CMP_PROPERTIES_URL": {
+          "type": "string",
+          "description": "path of the component.properties file if the file is not present in adjacent with pipeline config.yml file"
+        }
+},
+      "required": ["CMP_REPO_URL","CMP_NAME","CMP_TYPE","CMP_ARTIFACT_NAME","CMP_TECHNOLOGY_ARTIFACTORY_REPO","CMP_TECHNOLOGY_NAME","CMP_BUILD_TOOL","CMP_RELEASE_DATE"]
+    }
+  }
+}
