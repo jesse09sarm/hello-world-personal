@@ -1,0 +1,84 @@
+{
+  "title": "VSCode Schema4",
+  "type": "object",
+  "properties": {
+    "component": {
+      "$ref": "#/$defs/component_properties"
+    },
+    "steps": {
+      "$ref": "#/$defs/steps"
+    }
+  },
+  "$defs": {
+    "steps": {
+      "type": "array",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "APIDownload": {
+            "description": "API Download"
+          },
+          "APIGateway": {
+            "type": "object",
+            "description": "API instance creation in Anypoint Platform \n(by Instance ID); Policy creation/modification/deletion; Contract creation; Spring Cloud configuration API ID set/update; technology_stack=Mule",
+            
+            "properties": {
+              "APP_ENV": {
+                "type": "string",
+                "description": "spring cloud config suffix"
+              },
+              "GBL_GITHUB_CLONE_CRED_ID": {
+                "type": "string",
+                "description": "Jenkins credential id to clone repository"
+              },
+              "cmt": {
+                "$ref": "#/$defs/component_properties"
+              },
+              "cru": {
+              "$ref": "#/$defs/component_properties/properties/CMP_REPO_URL"
+              }
+            },
+            "required": ["APP_ENV"]
+          },
+          "APIPackage": {
+            "type": "object",
+            "description": "Generate Maven POM; Generate exchange.json; Package; technology_stack=Mule",
+            
+            "$ref": "#/$defs/component_properties",
+            "properties": {
+              "STP_API": {
+                "type": "string",
+                "description": "api asset name",
+                "enum": ["java3", "java8"]
+              }
+            },
+            "required": ["CMP_REPO_URL"]
+          }
+        }
+      }
+    },
+    "component_properties": {
+      "type": "object",
+      "description": "Jenkins Shared Library to read component properties and load it to LibraryProperties, this properties can be placed as component.properties file in adjacent to your the pipeline config.yml or in component_properties key as values; technology_stack=Property",
+      "properties": {
+        "CMP_REPO_URL": {
+          "type": "string",
+          "description": "Source code repository url ssh format and conditionally mandatory for ci|cicd|dml_cicd"
+        },
+        "CMP_NAME": {
+          "type": "string",
+          "description": "Unique name to qualify the component in the Gear ID, this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)"
+        },
+        "CMP_TYPE": {
+          "type": "string",
+          "description": "Component broader classification should mimic your Jenkins component type classification,this value is mandatory for promotion pipelines at step level (i.e. when each step is specific for a component)",
+          "oneOf": [
+            {"const": "api-gateway"},{"const": "batch"},{"const": "db"},{"const": "dml"},{"const": "etl"},{"const": "bpm"},{"const": "services"},{"const": "ui"},{"const": "duckcreek"},{"const": "rules"},{"const": "data"},{"const": "report"},{"const": "mq"},{"const": "salesforce"},{"const": "adobe"},{"const": "rpa"}
+          ]
+        }
+      },
+      "required": ["CMP_TYPE"]
+    }
+  }
+}
+  
